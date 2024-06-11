@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: arijit_diganto
+  password: 11352663
+  host: localhost
+  port: 5432
+
+development:
+  <<: *default
+  database: movie_app
+
+test:
+  <<: *default
+  database: movie_app_test
+
+production:
+  <<: *default
+  database: movie_app_production
