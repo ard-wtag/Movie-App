@@ -6,6 +6,10 @@ ruby "3.0.2"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
+#dotenv-rails gem
+gem 'dotenv-rails', groups: [:development, :test]
+
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
