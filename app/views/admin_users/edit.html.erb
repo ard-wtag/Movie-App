@@ -1,0 +1,34 @@
+<!-- app/views/admin_users/edit.html.erb -->
+
+<h2 class="text-2xl font-bold mb-6 text-center">Edit Movie</h2>
+
+<div class="flex justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <%= form_with model: @movie, url: admin_user_path(@movie), method: :patch, local: true, class: "space-y-6" do |form| %>
+      <div>
+        <%= form.label :title, class: "block text-gray-700" %>
+        <%= form.text_field :title, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= form.label :release_date, class: "block text-gray-700" %>
+        <%= form.date_field :release_date, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= form.label :director, class: "block text-gray-700" %>
+        <%= form.text_field :director, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= form.label :synopsis, class: "block text-gray-700" %>
+        <%= form.text_area :synopsis, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div class="flex justify-between">
+        <%= link_to 'Cancel', movielist_admin_users_path, class: 'py-2 px-4 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-300' %>
+        <%= form.submit "Update Movie", class: 'py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300' %>
+      </div>
+    <% end %>
+  </div>
+</div>

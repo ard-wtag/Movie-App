@@ -1,0 +1,28 @@
+<h1 class="text-2xl font-bold mb-6">Movie List</h1>
+
+<table class="min-w-full bg-white border">
+  <thead>
+    <tr>
+      <th class="px-4 py-2 border">Movie ID</th>
+      <th class="px-4 py-2 border">Title</th>
+      <th class="px-4 py-2 border">Director</th>
+      <th class="px-4 py-2 border">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td class="px-4 py-2 border"><%= movie.id %></td>
+        <td class="px-4 py-2 border"><%= movie.title %></td>
+        <td class="px-4 py-2 border"><%= movie.director %></td>
+        <td class="px-4 py-2 border text-center">
+          <div class="flex justify-center space-x-2">
+            <%= link_to 'Show Details', admin_user_path(movie), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+            <%= link_to 'Update Info', edit_admin_user_path(movie), class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" %>
+            <%= link_to 'Delete', confirm_movie_delete_admin_user_path(movie), data: { confirm: 'Are you sure?' }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

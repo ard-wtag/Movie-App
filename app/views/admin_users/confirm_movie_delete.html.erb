@@ -1,0 +1,11 @@
+<!-- app/views/admin_users/confirm_movie_delete.html.erb -->
+
+<h2 class="text-center text-2xl font-bold mb-4">Confirm Delete Movie</h2>
+
+<p class="text-center mb-8">Are you sure you want to delete <%= @movie.title %>?</p>
+
+<div class="flex justify-center space-x-4">
+  <%= link_to 'Cancel', movielist_admin_users_path, class: 'py-2 px-4 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-300' %>
+  
+  <%= button_to  'Delete', confirm_movie_destroy_admin_user_path(@movie), method: :delete, data: { confirm: 'Are you sure?' }, class: 'py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
+</div>

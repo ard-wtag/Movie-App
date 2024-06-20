@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  has_secure_password
+   has_secure_password
 
 
     # A user follows many users through the FollowList join model
@@ -20,5 +20,10 @@ class User < ApplicationRecord
   validates :email, :user_name, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 6 }, if: -> { new_record? || !password.nil? }
+
+
+  def full_name
+    "#{first_name} #{last_name}" 
+  end
 
 end
