@@ -21,8 +21,8 @@
         <td class="px-4 py-2 border"><%= user.phone_no %></td>
         <td class="px-4 py-2 border">
             <div class="flex justify-center space-x-2"> 
-                    <%= link_to 'Show Details', show_user_details_admin_user_path(user), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-                    <%= link_to 'Delete', confirm_user_delete_admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+                    <%= link_to 'Show Details', user_path(user), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+                    <%= link_to 'Delete', delete_user_path(user), class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
             </div>
           
         </td>

@@ -1,0 +1,51 @@
+<!-- app/views/admin_users/show.html.erb -->
+<div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+  <h1 class="text-3xl font-bold mb-6 text-center"><%= @movie.title %></h1>
+  <p class="text-xl font-semibold mb-4"><strong>Director:</strong> <%= @movie.director %></p>
+  <p class="text-xl font-semibold mb-4"><strong>Rating:</strong> <%= @average_rating %></p>
+  <p class="text-xl mb-4"><strong>Synopsis:</strong> <%= @movie.synopsis %></p>
+
+  <!-- Display Genres as buttons -->
+  <div class="flex flex-wrap gap-2 mb-4">
+    <% @movie.genres.each do |genre| %>
+      <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
+        <%= genre.genre_type %>
+      </button> 
+    <% end %>
+  </div> 
+  
+  <br/>
+
+  <div class="flex justify-between">
+        <%= link_to 'Back To Movie List', movies_path, class: 'py-2 px-4 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-300' %>
+  </div>
+
+  <br/> <br/>
+
+  <hr class="my-6">
+  <h2 class="text-2xl font-bold mb-4 text-center">User Reviews</h2>
+  <div class="bg-gray-100 p-4 rounded-lg">
+    <% if @reviews.any? %>
+      <table class="min-w-full bg-white">
+        <thead class="bg-gray-800 text-white">
+          <tr>
+            <th class="py-2 px-4">User Name</th>
+            <th class="py-2 px-4">Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reviews.each do |review| %>
+            <tr class="bg-gray-100">
+              <td class="border px-4 py-2">
+                <%= link_to "#{review.user.first_name} #{review.user.last_name}", '#', class: 'text-blue-500 hover:text-blue-700' %>
+              </td>
+              <td class="border px-4 py-2"><%= review.review %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p class="text-center">No reviews available.</p>
+    <% end %>
+  </div>
+</div>
