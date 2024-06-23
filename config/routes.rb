@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  
+
   root 'admin_users#index'
   
   resources :admin_users do
@@ -9,7 +11,12 @@ Rails.application.routes.draw do
       delete :logout 
     end
   end 
-
+  
+  resources :comments do 
+    member do 
+      get :delete 
+    end 
+  end 
 
   resources :movies  do 
     member do
