@@ -33,7 +33,9 @@
         <tbody>
           <% @reviews.each do |review| %>
             <tr class="bg-gray-100">
-              <td class="border px-4 py-2"><%= review.movie.title %></td>
+              <td class="border px-4 py-2">
+               <%= link_to "#{review.movie.title}", movie_path(review.movie), class: 'text-blue-500 hover:text-blue-700' %>
+              </td>
               <td class="border px-4 py-2"><%= review.review %></td>
               <td class="border px-4 py-2"><%= review.rating %></td>
             </tr>
