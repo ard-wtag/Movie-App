@@ -1,0 +1,44 @@
+<div class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+  <h1 class="text-3xl font-bold mb-6 text-center">Following</h1>
+  <div class="flex justify-between">
+    <%= link_to 'Back To User Profile', user_path(@user), class: 'py-2 px-4 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-300' %>
+  </div>
+  <br/>
+  <table class="min-w-full bg-white">
+    <thead>
+      <tr class="bg-gray-800 text-white">
+        <th class="py-2 px-4">Username</th>
+        <th class="py-2 px-4">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @followees.each do |followee| %>
+        <tr class="bg-gray-100">
+          <td>
+            <%= link_to "#{followee.first_name} #{followee.last_name}", user_path(followee), class: 'text-blue-500 hover:text-blue-700' %>
+          </td>
+
+        <%if @current_user%>
+
+          <%if @current_user==followee%>
+                 <td class="border px-4 py-2"></td>
+          <%elsif @current_user.followees.include?(followee) %> 
+                <td class="border px-4 py-2">
+                  <%= button_to 'Unfollow', unfollow_follower_path(followee,origin_user: @user.id, origin_view: 'followeelist'),method: :delete, class: 'py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
+                </td>
+          <%else%>
+                <td class="border px-4 py-2">
+                  <%= link_to 'Follow', follow_follower_path(followee,origin_user: @user.id, origin_view: 'followeelist'),method: :post, class: 'py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300' %>
+                </td>
+          <%end%>
+
+        <%elsif @current_admin%>
+              <td>
+                <%= button_to 'Delete', delete_user_path(followee),method: :delete, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+              </td>
+        <%end%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

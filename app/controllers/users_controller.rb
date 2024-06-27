@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   layout 'user_dashboard', except: [:login, :attempt_login,:new,:create]
-  before_action :confirm_logged_in, except: [:login, :attempt_login]
+  before_action :confirm_logged_in, except: [:login, :attempt_login,:new]
   before_action :set_user, only: [:show, :edit, :update, :delete, :destroy]
 
   def index
@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    #the user is being set by the set_user method before the action is called
   end
 
   def update
