@@ -15,6 +15,9 @@ gem 'dotenv-rails', groups: [:development, :test]
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
+gem 'image_processing', '~> 1.2'
+
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 

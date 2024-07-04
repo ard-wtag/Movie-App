@@ -1,4 +1,13 @@
 <div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+
+  <div class="flex justify-center mb-6">
+    <% if @movie.movie_cover.attached? %>
+      <%= image_tag url_for(@movie.movie_cover), class: 'w-72 h-96 object-cover' %>
+    <% else %>
+      <%= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNO3hziJ9HVvBASDh6lMDRX3p6eS_Fb4dvWN0pGyaGETX6yYt3PAl9mBgrqQFPE1fGDTU&usqp=CAU', class: 'w-72 h-96 object-cover' %>
+    <% end %>
+  </div>
+
   <h1 class="text-3xl font-bold mb-6 text-center"><%= @movie.title %></h1>
   <p class="text-xl font-semibold mb-4"><strong>Director:</strong> <%= @movie.director %></p>
   <p class="text-xl font-semibold mb-4"><strong>Rating:</strong> <%= @average_rating %></p>
@@ -15,10 +24,9 @@
 
   <br/>
 
-  <% if current_admin!=nil %>
+  <% if current_admin != nil %>
     <div class="flex justify-between mt-6">
       <%= link_to 'Edit Movie', edit_movie_path(@movie), class: 'py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
-        <br/> 
       <%= link_to 'Delete Movie', delete_movie_path(@movie), class: 'py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
     </div>
   <% end %>
@@ -38,7 +46,7 @@
       <table class="min-w-full bg-white">
         <thead class="bg-gray-800 text-white">
           <tr>
-            <th class="py-2 px-4">User Name</th>
+            <th class="py-2 px-4">User</th>
             <th class="py-2 px-4">Review</th>
             <th class="py-2 px-4">Rating</th>
             <th class="py-2 px-4">Full Review</th>
@@ -48,7 +56,12 @@
           <% @reviews.each do |review| %>
             <tr class="bg-gray-100">
               <td class="border px-4 py-2">
-                <%= link_to "#{review.user.first_name} #{review.user.last_name}", user_path(review.user), class: 'text-blue-500 hover:text-blue-700' %>
+                <% if review.user.profile_picture.attached? %>
+                  <%= image_tag url_for(review.user.profile_picture), size: "50x50", class: 'rounded-full mr-2' %>
+                <% else %>
+                  <%= image_tag 'https://st.depositphotos.com/2218212/2938/i/450/depositphotos_29387653-stock-photo-facebook-profile.jpg', size: "50x50", class: 'rounded-full mr-2' %>
+                <% end %>
+                <%= link_to "#{review.user.first_name} #{review.user.last_name}", user_path(review.user), class: 'text-blue-500 hover:text-blue-700 font-semibold' %>
               </td>
               <td class="border px-4 py-2"><%= truncate(review.review, length: 100) %></td>
               <td class="border px-4 py-2"><%= review.rating %></td>
@@ -80,6 +93,5 @@
       </div>
     <% end %>
   </div>
-
 
 </div>

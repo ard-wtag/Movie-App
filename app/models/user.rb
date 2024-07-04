@@ -16,6 +16,8 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy # if the user is removed, so will all of his/her reviews
   has_many :comments, dependent: :destroy # if the user is removed, so will all of his/her comments 
 
+  has_one_attached :profile_picture
+
   validates :first_name, :last_name, :user_name, :email, :phone_no, presence: true
   validates :email, :user_name, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }

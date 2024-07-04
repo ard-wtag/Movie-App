@@ -7,6 +7,8 @@ class ReviewsController < ApplicationController
 
   def show
     #@review = Review.find(params[:id])
+    @movie=@review.movie
+    @user=@review.user
   end
 
   def new

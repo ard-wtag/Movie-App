@@ -1,5 +1,14 @@
 <div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
   <h1 class="text-3xl font-bold mb-6 text-center"><%= @user.full_name %></h1>
+
+    <div class="flex justify-center mb-6">
+      <% if @user.profile_picture.attached? %>
+        <%= image_tag url_for(@user.profile_picture), class: 'w-32 h-32 rounded-full object-cover' %>
+      <% else %>
+        <%= image_tag 'https://st.depositphotos.com/2218212/2938/i/450/depositphotos_29387653-stock-photo-facebook-profile.jpg', class: 'w-32 h-32 rounded-full object-cover' %>
+      <% end %>
+    </div>
+
   <p class="text-xl font-semibold mb-4"><strong>Email:</strong> <%= @user.email %></p>
   <p class="text-xl font-semibold mb-4"><strong>Phone Number:</strong> <%= @user.phone_no %></p>
 

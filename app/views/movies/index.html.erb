@@ -3,14 +3,21 @@
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
   <% @movies.each do |movie| %>
     <div class="card bg-white rounded-lg overflow-hidden shadow-md cursor-pointer">
-      <!-- Movie Image (to be replaced with actual image link later) -->
-      <img src="https://via.placeholder.com/300" alt="Movie Image" class="w-full h-48 object-cover" style="min-height: 200px;">
-
+      <!-- Movie Image -->
+      <div class="w-full h-48 overflow-hidden">
+        <% if movie.movie_cover.attached? %>
+          <%= image_tag url_for(movie.movie_cover), class: 'w-full h-full object-cover' %>
+        <% else %>
+          <img src="https://via.placeholder.com/300" alt="Movie Image" class="w-full h-full object-cover">
+        <% end %>
+      </div>
       <div class="p-4">
         <!-- Movie Title -->
-        <h2 class="text-xl font-bold mb-2"><%= link_to movie.title, movie_path(movie), class: "text-blue-500 hover:text-blue-700" %></h2>
+        <h2 class="text-xl font-bold mb-2">
+          <%= link_to movie.title, movie_path(movie), class: "text-blue-500 hover:text-blue-700" %>
+        </h2>
 
-        <!-- Movie Rating (to be replaced with actual rating later) -->
+        <!-- Movie Rating -->
         <div class="flex items-center mb-2">
           <svg class="h-5 w-5 text-yellow-500 fill-current mr-1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 1L12.2451 6.47214L18.4902 7.11803L13.7451 11.0279L15.4902 17L10 13.7634L4.5098 17L6.2549 11.0279L1.5098 7.11803L7.7549 6.47214L10 1Z"/>
@@ -18,9 +25,9 @@
           <span class="text-gray-600">8.5</span> <!-- Replace with movie rating -->
         </div>
 
-        <!-- Number of Reviews (to be replaced with actual count later) -->
+        <!-- Number of Reviews -->
         <div class="text-gray-600 mb-4">
-          <span><%= pluralize(movie.reviews.count, 'Review') %></span> <!-- Replace with review count -->
+          <span><%= pluralize(movie.reviews.count, 'Review') %></span>
         </div>
       </div>
     </div>

@@ -1,42 +1,65 @@
 <div class="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto">
   <h1 class="text-3xl font-bold mb-6 text-center">Edit Your Profile</h1>
 
-  <%= form_for @user do |f| %>
+  <!-- Profile Picture Section -->
+    <div class="flex justify-center mb-6">
+    <% if @user.profile_picture.attached? %>
+      <%= image_tag url_for(@user.profile_picture), class: 'w-32 h-32 rounded-full object-cover' %>
+    <% else %>
+      <%= image_tag 'https://st.depositphotos.com/2218212/2938/i/450/depositphotos_29387653-stock-photo-facebook-profile.jpg', class: 'w-32 h-32 rounded-full object-cover' %>
+    <% end %>
+  </div>
+
+  <%= form_for @user, html: { multipart: true } do |f| %>
+    <!-- Profile Picture Upload Field -->
+    <div class="mb-4">
+      <%= f.label :profile_picture, class: 'block text-gray-700' %>
+      <%= f.file_field :profile_picture, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+    </div>
+
+    <!-- First Name Field -->
     <div class="mb-4">
       <%= f.label :first_name, class: 'block text-gray-700' %>
       <%= f.text_field :first_name, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
+    <!-- Last Name Field -->
     <div class="mb-4">
       <%= f.label :last_name, class: 'block text-gray-700' %>
       <%= f.text_field :last_name, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
+    <!-- Username Field -->
     <div class="mb-4">
       <%= f.label :user_name, class: 'block text-gray-700' %>
       <%= f.text_field :user_name, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
+    <!-- Email Field -->
     <div class="mb-4">
       <%= f.label :email, class: 'block text-gray-700' %>
       <%= f.email_field :email, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
+    <!-- Phone Number Field -->
     <div class="mb-4">
       <%= f.label :phone_no, class: 'block text-gray-700' %>
       <%= f.telephone_field :phone_no, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
+    <!-- Password Field (if needed for editing) -->
     <div class="mb-4">
       <%= f.label :password, class: 'block text-gray-700' %>
       <%= f.password_field :password, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
+    <!-- Password Confirmation Field (if needed for editing) -->
     <div class="mb-4">
       <%= f.label :password_confirmation, class: 'block text-gray-700' %>
       <%= f.password_field :password_confirmation, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
+    <!-- Submit Button -->
     <div class="flex justify-between items-center">
       <%= f.submit 'Update Profile', class: 'py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300' %>
       <%= link_to 'Cancel', user_path(@user), class: 'py-2 px-4 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-300' %>

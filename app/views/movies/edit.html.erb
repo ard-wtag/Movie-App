@@ -1,10 +1,24 @@
 <!-- app/views/admin_users/edit.html.erb -->
 
 <h2 class="text-2xl font-bold mb-6 text-center">Edit Movie</h2>
+  <!-- Profile Picture Section -->
+<div class="flex justify-center mb-6">
+  <% if @movie.movie_cover.attached? %>
+    <%= image_tag url_for(@movie.movie_cover), class: 'w-100 h-50 object-cover' %>
+  <% else %>
+    <%= image_tag 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNO3hziJ9HVvBASDh6lMDRX3p6eS_Fb4dvWN0pGyaGETX6yYt3PAl9mBgrqQFPE1fGDTU&usqp=CAU', class: 'w-48 h-32 object-cover' %>
+  <% end %>
+</div>
 
 <div class="flex justify-center">
   <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
     <%= form_with model: @movie, url: movie_path(@movie), method: :patch, local: true, class: "space-y-6" do |form| %>
+          <!-- Profile Picture Upload Field -->
+      <div class="mb-4">
+        <%= form.label :movie_cover, class: 'block text-gray-700' %>
+        <%= form.file_field :movie_cover, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+      </div>
+      
       <div>
         <%= form.label :title, class: "block text-gray-700" %>
         <%= form.text_field :title, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
