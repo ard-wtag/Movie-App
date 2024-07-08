@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# a movie can have multiple genres
 class CreateGenres < ActiveRecord::Migration[7.1]
   def change
     create_table :genres do |t|

@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# A movie can have multiple reviews
 class CreateReviews < ActiveRecord::Migration[7.1]
   def change
     create_table :reviews do |t|
