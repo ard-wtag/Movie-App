@@ -1,0 +1,9 @@
+require:
+  - rubocop-capybara
+  - rubocop-rails
+
+AllCops:
+  SuggestExtensions: false
+  
+Metrics/BlockLength:
+  Max: 30
