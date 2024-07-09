@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   has_secure_password
-  enum role: { user: 0, admin: 1 } #enum works like a map, links names/symbols to integer values in db
+  enum role: { user: 0, admin: 1 } # enum works like a map, links names/symbols to integer values in db
 
   # A user follows many users through the FollowList join model
   has_many :followed_friend_lists, foreign_key: :follower_id, class_name: 'FollowList'

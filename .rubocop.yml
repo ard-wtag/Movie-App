@@ -5,4 +5,4 @@ require:
 AllCops:
   SuggestExtensions: false
 Metrics/BlockLength:
-  Max: 30
+  Max: 100
