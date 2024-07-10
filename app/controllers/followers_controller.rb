@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+# Follower list and follow list data is handeled from here
+
 class FollowersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
@@ -7,33 +11,32 @@ class FollowersController < ApplicationController
     @origin_user = User.find(params[:origin_user])
     origin_view = params[:origin_view]
     redirect_based_on_origin(@origin_user, origin_view)
-    #redirect_to user_path(current_user.id), notice: 'You are following this user.'
-
+    # redirect_to user_path(current_user.id), notice: 'You are following this user.'
   end
 
   def unfollow
     follow_record = current_user.followed_friend_lists.find_by(followee: @user)
-    follow_record.destroy if follow_record
+    follow_record&.destroy
 
     @origin_user = User.find(params[:origin_user])
     origin_view = params[:origin_view]
     redirect_based_on_origin(@origin_user, origin_view)
-    #redirect_to user_path(current_user.id), notice: 'You are no longer following this user.'
+    # redirect_to user_path(current_user.id), notice: 'You are no longer following this user.'
   end
 
   def followerlist
-  
-    @followers=@user.followers    
+    @followers = @user.followers
   end
 
   def followeelist
-    @followees=@user.followees 
+    @followees = @user.followees
   end
 
-  private 
+  private
+
   def set_user
-    @user=User.find(params[:id])
-  end 
+    @user = User.find(params[:id])
+  end
 
   def redirect_based_on_origin(origin_user, origin_view)
     case origin_view
@@ -47,6 +50,4 @@ class FollowersController < ApplicationController
       redirect_to root_path, alert: 'Something went wrong'
     end
   end
-
-
 end
