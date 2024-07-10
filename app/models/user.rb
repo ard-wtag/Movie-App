@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy # if the user is removed, so will all of his/her reviews
   has_many :comments, dependent: :destroy # if the user is removed, so will all of his/her comments
 
-  validates :first_name, :last_name, :user_name, :email, :phone_no, presence: true
+  validates :first_name, :last_name, :user_name, :email, :phone_number, presence: true
   validates :email, :user_name, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 6 }, if: -> { new_record? || !password.nil? }

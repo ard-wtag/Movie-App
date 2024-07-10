@@ -13,6 +13,8 @@ gem 'bootsnap', require: false
 # dotenv-rails gem
 gem 'dotenv-rails', groups: %i[development test]
 
+gem 'faker' # using this gem in the seed file to generate random data
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
 
