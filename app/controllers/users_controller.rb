@@ -47,13 +47,12 @@ class UsersController < ApplicationController
   end
 
   def delete
-    
+    # No specific flash message needed here
   end
 
   def destroy
     if @user.destroy
       flash[:notice] = 'User was successfully deleted.'
-
       if session[:admin_user_id]
         # Redirect to users index if admin deletes the user
         redirect_to users_path
@@ -62,7 +61,8 @@ class UsersController < ApplicationController
         redirect_to login_users_path
       end
     else
-      redirect_to user_path(@user), alert: 'Failed to delete user.'
+      flash[:alert] = 'Failed to delete user.'
+      redirect_to user_path(@user)
     end
   end
 
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
     if params[:email].present? && params[:password].present?
       found_user = User.find_by(email: params[:email])
 
-      redirect_to login_admin_users_path and return if found_user.admin?
+      redirect_to login_admin_users_path and return if found_user&.admin?
 
       if found_user&.authenticate(params[:password])
         session[:user_id] = found_user.id
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
     session[:user_id] = nil
     flash[:notice] = 'Logged out successfully.'
     redirect_to login_users_path
-    self.class.layout nil # Clear layout after logout
+    # self.class.layout nil # Clear layout after logout
   end
 
   private

@@ -48,7 +48,6 @@ class AdminUsersController < ApplicationController
     session[:admin_user_id] = nil
     flash[:notice] = 'Logged out successfully.'
     redirect_to login_admin_users_path
-    self.class.layout nil # Clear layout after logout
   end
 
   private

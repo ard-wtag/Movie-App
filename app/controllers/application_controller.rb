@@ -2,7 +2,7 @@
 
 # This is application controller
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :current_admin, :logged_in?
+  helper_method :current_user, :current_admin, :logged_in?, :flash_class
 
   before_action :set_layout
 
@@ -42,7 +42,15 @@ class ApplicationController < ActionController::Base
         self.class.layout 'user_dashboard'
       end
     else
-      self.class.layout nil # Clear layout if no user is logged in
+      self.class.layout 'application'
+    end
+  end
+
+  def flash_class(level)
+    case level
+    when 'notice' then 'bg-green-500 text-white'
+    when 'alert' then 'bg-red-500 text-white'
+    else 'bg-yellow-500 text-white'
     end
   end
 end
