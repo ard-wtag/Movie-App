@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'followers/follow'
-  get 'followers/unfollow'
-  get 'followers/followerlist'
-  get 'followers/followeelist'
 
   root 'movies#index'
 

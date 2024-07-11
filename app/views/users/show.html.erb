@@ -10,7 +10,7 @@
     </div>
 
   <p class="text-xl font-semibold mb-4"><strong>Email:</strong> <%= @user.email %></p>
-  <p class="text-xl font-semibold mb-4"><strong>Phone Number:</strong> <%= @user.phone_no %></p>
+  <p class="text-xl font-semibold mb-4"><strong>Phone Number:</strong> <%= @user.phone_number %></p>
 
   <%if @current_user and @current_user.id!= @user.id %>
     <%if @current_user.followees.include?(@user)%>

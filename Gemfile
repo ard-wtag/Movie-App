@@ -30,7 +30,7 @@ gem 'stimulus-rails'
 
 gem 'tailwindcss-rails', '~> 2.6'
 
-gem 'turbo-rails'
+#gem 'turbo-rails'
 
 gem 'tzinfo-data', platforms: %i[mswin mswin64 mingw x64_mingw jruby]
 

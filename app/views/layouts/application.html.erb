@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Admin Login</title>
+    <title>Application Dashboard</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,13 +10,13 @@
     <%= javascript_importmap_tags %>
   </head>
   <body class="bg-gray-100">
-    <% if flash.any? %>
       <% flash.each do |key, value| %>
         <div class="flash <%= flash_class(key) %> p-4 rounded mb-4">
           <%= value %>
         </div>
       <% end %>
-    <% end %>
+   
+
     <%= yield %>
   </body>
 </html>

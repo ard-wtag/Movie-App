@@ -14,6 +14,7 @@
 <body class="bg-gray-100">
 
   <% if flash.any? %>
+  <% puts "********hello from show view user controller****" %>
     <% flash.each do |key, value| %>
       <div class="flash <%= flash_class(key) %> p-4 rounded mb-4">
           <%= value %>
@@ -28,7 +29,7 @@
         <ul class="space-y-4">
           <li><%= link_to 'User Profile', user_path(current_user), class: "block py-2 px-4 hover:bg-gray-700" %></li>
           <li><%= link_to 'Movie List', movies_path, class: "block py-2 px-4 hover:bg-gray-700" %></li>
-          <li><%= button_to 'Log Out', logout_users_path, method: :delete, class: "block py-2 px-4 hover:bg-gray-700" %></li>
+          <li><%= button_to 'Log Out', logout_users_path, method: :delete,data: { turbo: false }, class: "block py-2 px-4 hover:bg-gray-700" %></li>
         </ul>
       </div>
     <% end %>

@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   has_one_attached :profile_picture
 
-  validates :first_name, :last_name, :user_name, :email, :phone_no, presence: true
+  validates :first_name, :last_name, :user_name, :email, :phone_number, presence: true
   validates :email, :user_name, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, length: { minimum: 6 }, if: -> { new_record? || !password.nil? }

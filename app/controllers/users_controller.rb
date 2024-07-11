@@ -3,7 +3,7 @@
 # This is users controller, user functionalities are handeled from here
 class UsersController < ApplicationController
   layout 'user_dashboard', except: %i[login attempt_login new create]
-  before_action :confirm_logged_in, except: %i[login attempt_login new]
+  before_action :confirm_logged_in, except: %i[login attempt_login new create]
   before_action :set_user, only: %i[show edit update delete destroy]
 
   def index
@@ -25,9 +25,9 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = 'User was successfully created.'
       session[:user_id] = @user.id
-      redirect_to @user
+      redirect_to user_path(@user)
     else
-      flash.now[:alert] = 'Failed to create user.'
+      flash[:alert] = @user.errors.full_messages
       render :new
     end
   end
@@ -38,10 +38,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = 'User was successfully updated.'
+      flash[:notice] = 'User was successfully updated.' 
       redirect_to user_path(@user)
     else
-      flash.now[:alert] = 'Failed to update user.'
+      flash.now[:alert] = 'Failed to update user.' + @user.errors.full_messages.join(', ')
       render :edit
     end
   end
@@ -77,8 +77,8 @@ class UsersController < ApplicationController
       redirect_to login_admin_users_path and return if found_user&.admin?
 
       if found_user&.authenticate(params[:password])
-        session[:user_id] = found_user.id
         flash[:notice] = 'You are now logged in.'
+        session[:user_id] = found_user.id
         redirect_to user_path(found_user)
       else
         flash.now[:alert] = 'Invalid email/password combination.'
@@ -91,10 +91,11 @@ class UsersController < ApplicationController
   end
 
   def logout
+    
     session[:user_id] = nil
     flash[:notice] = 'Logged out successfully.'
     redirect_to login_users_path
-    # self.class.layout nil # Clear layout after logout
+ 
   end
 
   private
@@ -111,7 +112,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :user_name, :email, :phone_no, :password,
+    params.require(:user).permit(:first_name, :last_name, :user_name, :email, :phone_number, :password,
                                  :password_confirmation, :profile_picture)
   end
 end

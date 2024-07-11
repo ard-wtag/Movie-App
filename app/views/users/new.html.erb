@@ -1,9 +1,14 @@
 <!-- app/views/users/new.html.erb -->
+
 <div class="min-h-screen flex items-center justify-center bg-gray-100">
   <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
     <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
 
-    <%= form_with model: @user, local: true, class: "space-y-6" do |form| %>
+    <%= form_with model: @user, local: true,data: { turbo: false }, class: "space-y-6" do |form| %>
+      <div class="mb-4">
+        <%= form.label :profile_picture, class: 'block text-gray-700' %>
+        <%= form.file_field :profile_picture, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+      </div>
       <div>
         <%= form.label :first_name, class: "block text-gray-700" %>
         <%= form.text_field :first_name, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
@@ -25,8 +30,8 @@
       </div>
 
       <div>
-        <%= form.label :phone_no, class: "block text-gray-700" %>
-        <%= form.telephone_field :phone_no, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+        <%= form.label :phone_number, class: "block text-gray-700" %>
+        <%= form.telephone_field :phone_number, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
       </div>
 
       <div>
