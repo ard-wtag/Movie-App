@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # get 'password_resets/new'
+  # get 'password_resets/create'
+  # get 'password_resets/edit'
+  # get 'password_resets/update'
 
   root 'movies#index'
 
@@ -33,6 +37,8 @@ Rails.application.routes.draw do
     end
     resources :reviews, only: %i[new create index show]
   end
+
+  resource :password_reset, only: [:new, :create, :edit, :update]
 
   resources :reviews do
     member do

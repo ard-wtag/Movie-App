@@ -1,5 +1,14 @@
-<h1>UserNotification#signin_notification</h1>
-
-<p>
-  <%= @greeting %>, find me in app/views/user_notification_mailer/signin_notification.html.erb
-</p>
+<div class="email-container">
+<div class="email-header text-2xl font-bold mb-6 text-center text-gray-700">
+  Welcome to Our Platform
+</div>
+<div class="email-body text-lg text-gray-600 leading-6">
+  <p class="mb-4">Hi <%= @user.first_name %>,</p>
+  <p class="mb-4">Welcome to our platform! We are excited to have you on board.</p>
+  <p class="mb-4">Explore our features and start enjoying your experience.</p>
+</div>
+<div class="email-footer text-sm text-gray-500 text-center mt-6">
+  <p>Thank you,</p>
+  <p>The Company Team</p>
+</div>
+</div>

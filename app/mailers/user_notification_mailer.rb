@@ -5,16 +5,11 @@ class UserNotificationMailer < ApplicationMailer
     @greeting = "Hi"
     @user=user 
 
-    mail(to: @user.email, subject: 'Successfully Loggedin')
+    mail(to: @user.email, subject: 'Successfully Logged in')
 
     
   end
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_notification_mailer.signin_notification.subject
-  #
   def signin_notification(user)
     @greeting = "Hi"
     @user=user 
@@ -28,8 +23,9 @@ class UserNotificationMailer < ApplicationMailer
   #   en.user_notification_mailer.password_reset.subject
   #
   def password_reset
-    @greeting = "Hi"
+    @user = params[:user]
+    @token = @user.signed_id(purpose: 'password_reset', expires_in: 15.minutes)
+    mail to: @user.email, subject: 'Password Reset Instructions'
 
-    mail to: "to@example.org"
   end
 end
