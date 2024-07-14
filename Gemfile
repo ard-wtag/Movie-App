@@ -44,6 +44,7 @@ group :development do
   gem 'rubocop-capybara'
   gem 'rubocop-rails'
   gem 'web-console'
+  gem "letter_opener"
 end
 
 group :test do

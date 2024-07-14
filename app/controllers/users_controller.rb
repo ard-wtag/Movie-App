@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:notice] = 'User was successfully created.'
       session[:user_id] = @user.id
+      UserNotificationMailer.signin_notification(@user).deliver_now
       redirect_to user_path(@user)
     else
       flash[:alert] = @user.errors.full_messages
@@ -79,6 +80,8 @@ class UsersController < ApplicationController
       if found_user&.authenticate(params[:password])
         flash[:notice] = 'You are now logged in.'
         session[:user_id] = found_user.id
+
+        UserNotificationMailer.login_notification(found_user).deliver_now
         redirect_to user_path(found_user)
       else
         flash.now[:alert] = 'Invalid email/password combination.'
