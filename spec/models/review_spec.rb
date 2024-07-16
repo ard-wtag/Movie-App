@@ -74,7 +74,7 @@ RSpec.describe Review, type: :model do
       comment2 = Comment.create(review: review, user: user, comment: 'Me too!')
       expect(review.all_comments).to include(
         { user_id: comment1.user_id, comment: comment1.comment },
-        { user_id: comment2.user_id, comment: comment2.comment }
+        { user_id: comment2.user_id, comment: comment2.comment },
       )
     end
   end

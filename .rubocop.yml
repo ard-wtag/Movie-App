@@ -1,8 +1,2 @@
-require:
-  - rubocop-capybara
-  - rubocop-rails
-
-AllCops:
-  SuggestExtensions: false
-Metrics/BlockLength:
-  Max: 100
+inherit_from:
+  - https://raw.githubusercontent.com/wtag/default-configs/master/rubocop-default-config-ruby2.6.yml

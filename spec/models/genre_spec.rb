@@ -32,7 +32,7 @@ RSpec.describe Genre, type: :model do
                            synopsis: 'Lorem ipsum')
       Genre.create(movie: movie, genre_type: 'Action')
       Genre.create(movie: movie, genre_type: 'Comedy')
-      expect(Genre.for_movie(movie)).to match_array(%w[Action Comedy])
+      expect(Genre.for_movie(movie)).to match_array(%w(Action Comedy))
     end
   end
 end

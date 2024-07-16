@@ -12,7 +12,7 @@ RSpec.describe User, type: :model do
         email: 'john.doe@example.com',
         phone_no: '1234567890',
         password: 'password',
-        password_confirmation: 'password'
+        password_confirmation: 'password',
       )
       expect(user).to be_valid
     end
@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
         email: 'jane.doe@example.com',
         phone_no: '0987654321',
         password: 'password',
-        password_confirmation: 'password'
+        password_confirmation: 'password',
       )
       user = User.new(email: 'jane.doe@example.com')
       expect(user).to_not be_valid
@@ -64,7 +64,7 @@ RSpec.describe User, type: :model do
         email: 'jane.doe@example.com',
         phone_no: '0987654321',
         password: 'password',
-        password_confirmation: 'password'
+        password_confirmation: 'password',
       )
       user = User.new(user_name: 'janedoe')
       expect(user).to_not be_valid

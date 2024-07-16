@@ -1,5 +1,3 @@
-# db/seeds.rb
-
 require 'faker'
 
 # Create 20 Users
@@ -11,7 +9,7 @@ require 'faker'
     email: Faker::Internet.email,
     phone_number: Faker::PhoneNumber.cell_phone_in_e164,
     password: '121212',
-    password_confirmation: '121212'
+    password_confirmation: '121212',
   )
 end
 
@@ -21,7 +19,7 @@ end
     title: Faker::Movie.title,
     release_date: Faker::Date.between(from: 50.years.ago, to: Date.today),
     director: Faker::Name.name,
-    synopsis: Faker::Lorem.paragraph(sentence_count: 3)
+    synopsis: Faker::Lorem.paragraph(sentence_count: 3),
   )
 end
 
@@ -30,7 +28,7 @@ movies = Movie.all
 20.times do
   Genre.create!(
     movie: movies.sample,
-    genre_type: Faker::Book.genre
+    genre_type: Faker::Book.genre,
   )
 end
 
@@ -41,7 +39,7 @@ users = User.all
     movie: movies.sample,
     user: users.sample,
     rating: rand(1..10),
-    review: Faker::Lorem.paragraph(sentence_count: 5)
+    review: Faker::Lorem.paragraph(sentence_count: 5),
   )
 end
 
@@ -51,7 +49,7 @@ reviews = Review.all
   Comment.create!(
     review: reviews.sample,
     user: users.sample,
-    comment: Faker::Lorem.paragraph(sentence_count: 2)
+    comment: Faker::Lorem.paragraph(sentence_count: 2),
   )
 end
 
@@ -59,12 +57,12 @@ end
 20.times do
   follower = users.sample
   followee = users.sample
-  unless follower == followee || FollowList.exists?(follower: follower, followee: followee)
-    FollowList.create!(
-      follower: follower,
-      followee: followee
-    )
-  end
+  next if follower == followee || FollowList.exists?(follower: follower, followee: followee)
+
+  FollowList.create!(
+    follower: follower,
+    followee: followee,
+  )
 end
 
-puts "Seed data created successfully!"
+puts 'Seed data created successfully!'

@@ -9,7 +9,7 @@ RSpec.describe Movie, type: :model do
         title: 'Example Movie',
         release_date: Time.zone.today,
         director: 'Director Name',
-        synopsis: 'Lorem ipsum'
+        synopsis: 'Lorem ipsum',
       )
       expect(movie).to be_valid
     end
@@ -18,7 +18,7 @@ RSpec.describe Movie, type: :model do
       movie = Movie.new(
         release_date: Time.zone.today,
         director: 'Director Name',
-        synopsis: 'Lorem ipsum'
+        synopsis: 'Lorem ipsum',
       )
       expect(movie).to_not be_valid
     end
@@ -27,7 +27,7 @@ RSpec.describe Movie, type: :model do
       movie = Movie.new(
         title: 'Example Movie',
         director: 'Director Name',
-        synopsis: 'Lorem ipsum'
+        synopsis: 'Lorem ipsum',
       )
       expect(movie).to_not be_valid
     end
@@ -36,7 +36,7 @@ RSpec.describe Movie, type: :model do
       movie = Movie.new(
         title: 'Example Movie',
         release_date: Time.zone.today,
-        synopsis: 'Lorem ipsum'
+        synopsis: 'Lorem ipsum',
       )
       expect(movie).to_not be_valid
     end
@@ -45,7 +45,7 @@ RSpec.describe Movie, type: :model do
       movie = Movie.new(
         title: 'Example Movie',
         release_date: Time.zone.today,
-        director: 'Director Name'
+        director: 'Director Name',
       )
       expect(movie).to_not be_valid
     end
