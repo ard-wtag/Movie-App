@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User Dashboard</title>
+  <title><%= t('layouts.user_dashboard.title') %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -14,7 +14,6 @@
 <body class="bg-gray-100">
 
   <% if flash.any? %>
-  <% puts "********hello from show view user controller****" %>
     <% flash.each do |key, value| %>
       <div class="flash <%= flash_class(key) %> p-4 rounded mb-4">
           <%= value %>
@@ -25,16 +24,15 @@
   <div class="min-h-screen flex">
     <% if current_user %>
       <div class="bg-gray-800 text-white w-64 p-6">
-        <h1 class="text-2xl font-bold mb-6">User Panel</h1>
+        <h1 class="text-2xl font-bold mb-6"><%= t('layouts.user_dashboard.user_panel') %></h1>
         <ul class="space-y-4">
-          <li><%= link_to 'User Profile', user_path(current_user), class: "block py-2 px-4 hover:bg-gray-700" %></li>
-          <li><%= link_to 'Movie List', movies_path, class: "block py-2 px-4 hover:bg-gray-700" %></li>
-          <li><%= button_to 'Log Out', logout_users_path, method: :delete,data: { turbo: false }, class: "block py-2 px-4 hover:bg-gray-700" %></li>
+          <li><%= link_to t('layouts.user_dashboard.user_profile'), user_path(current_user), class: "block py-2 px-4 hover:bg-gray-700" %></li>
+          <li><%= link_to t('layouts.user_dashboard.movie_list'), movies_path, class: "block py-2 px-4 hover:bg-gray-700" %></li>
+          <li><%= button_to t('layouts.user_dashboard.log_out'), logout_users_path, method: :delete, data: { turbo: false }, class: "block py-2 px-4 hover:bg-gray-700" %></li>
         </ul>
       </div>
     <% end %>
     <div class="flex-1">
-
       <%= yield %>
     </div>
   </div>

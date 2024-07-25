@@ -1,8 +1,10 @@
+<!-- app/views/users/edit.html.erb -->
+
 <div class="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto">
-  <h1 class="text-3xl font-bold mb-6 text-center">Edit Your Profile</h1>
+  <h1 class="text-3xl font-bold mb-6 text-center"><%= t('users.edit.title') %></h1>
 
   <!-- Profile Picture Section -->
-    <div class="flex justify-center mb-6">
+  <div class="flex justify-center mb-6">
     <% if @user.profile_picture.attached? %>
       <%= image_tag url_for(@user.profile_picture), class: 'w-32 h-32 rounded-full object-cover' %>
     <% else %>
@@ -13,56 +15,56 @@
   <%= form_for @user, html: { multipart: true } do |f| %>
     <!-- Profile Picture Upload Field -->
     <div class="mb-4">
-      <%= f.label :profile_picture, class: 'block text-gray-700' %>
+      <%= f.label :profile_picture, t('users.edit.profile_picture'), class: 'block text-gray-700' %>
       <%= f.file_field :profile_picture, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
     <!-- First Name Field -->
     <div class="mb-4">
-      <%= f.label :first_name, class: 'block text-gray-700' %>
+      <%= f.label :first_name, t('users.edit.first_name'), class: 'block text-gray-700' %>
       <%= f.text_field :first_name, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
     <!-- Last Name Field -->
     <div class="mb-4">
-      <%= f.label :last_name, class: 'block text-gray-700' %>
+      <%= f.label :last_name, t('users.edit.last_name'), class: 'block text-gray-700' %>
       <%= f.text_field :last_name, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
     <!-- Username Field -->
     <div class="mb-4">
-      <%= f.label :user_name, class: 'block text-gray-700' %>
+      <%= f.label :user_name, t('users.edit.user_name'), class: 'block text-gray-700' %>
       <%= f.text_field :user_name, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
     <!-- Email Field -->
     <div class="mb-4">
-      <%= f.label :email, class: 'block text-gray-700' %>
+      <%= f.label :email, t('users.edit.email'), class: 'block text-gray-700' %>
       <%= f.email_field :email, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
     <!-- Phone Number Field -->
     <div class="mb-4">
-      <%= f.label :phone_number, class: 'block text-gray-700' %>
+      <%= f.label :phone_number, t('users.edit.phone_number'), class: 'block text-gray-700' %>
       <%= f.telephone_field :phone_number, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
     <!-- Password Field (if needed for editing) -->
     <div class="mb-4">
-      <%= f.label :password, class: 'block text-gray-700' %>
+      <%= f.label :password, t('users.edit.password'), class: 'block text-gray-700' %>
       <%= f.password_field :password, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
     <!-- Password Confirmation Field (if needed for editing) -->
     <div class="mb-4">
-      <%= f.label :password_confirmation, class: 'block text-gray-700' %>
+      <%= f.label :password_confirmation, t('users.edit.password_confirmation'), class: 'block text-gray-700' %>
       <%= f.password_field :password_confirmation, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
     </div>
 
     <!-- Submit Button -->
     <div class="flex justify-between items-center">
-      <%= f.submit 'Update Profile', class: 'py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300' %>
-      <%= link_to 'Cancel', user_path(@user), class: 'py-2 px-4 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-300' %>
+      <%= f.submit t('users.edit.submit'), class: 'py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300' %>
+      <%= link_to t('users.edit.cancel'), user_path(@user), class: 'py-2 px-4 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-300' %>
     </div>
   <% end %>
 </div>

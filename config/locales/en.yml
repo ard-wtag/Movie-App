@@ -1,31 +1,154 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
+# config/locales/en.yml
 en:
-  hello: "Hello world"
+  layouts:
+    admin_dashboard:
+      title: "Admin Dashboard"
+      admin_panel: "Admin Panel"
+      user_list: "User List"
+      movie_list: "Movie List"
+      add_movie: "Add Movie"
+      log_out: "Log Out"
+    user_dashboard:
+      title: "User Dashboard"
+      user_panel: "User Panel"
+      user_profile: "User Profile"
+      movie_list: "Movie List"
+      log_out: "Log Out"
+
+  users:
+    show:
+      title: "User Profile"
+      email: "Email"
+      phone_number: "Phone Number"
+      unfollow: "Unfollow"
+      follow: "Follow"
+      edit_profile: "Edit Profile"
+      reviews_count: "No of Reviews"
+      followers: "Followers"
+      following: "Following"
+      user_reviews: "User Reviews"
+      movie_name: "Movie Name"
+      review: "Review"
+      rating: "Rating"
+      no_reviews: "No reviews yet."
+
+    new:
+      title: "Sign Up"
+      profile_picture: "Profile Picture"
+      first_name: "First Name"
+      last_name: "Last Name"
+      user_name: "Username"
+      email: "Email"
+      phone_number: "Phone Number"
+      password: "Password"
+      password_confirmation: "Confirm Password"
+      submit: "Sign Up"
+      login: "Log in"
+
+    edit:
+      title: "Edit Your Profile"
+      profile_picture: "Profile Picture"
+      first_name: "First Name"
+      last_name: "Last Name"
+      user_name: "Username"
+      email: "Email"
+      phone_number: "Phone Number"
+      password: "Password"
+      password_confirmation: "Password Confirmation"
+      submit: "Update Profile"
+      cancel: "Cancel"
+
+    login:
+      title: "User Log in"
+      email: "Email"
+      password: "Password"
+      submit: "Log in"
+      forgot_password: "Forgot your password?"
+      sign_up: "Sign Up"
+
+    delete:
+      confirm_title: "Confirm User Deletion"
+      confirm_message: "Are you sure you want to delete this user?"
+      cancel: "Cancel"
+      delete: "Delete"
+
+
+  movies:
+    index:
+      title: "Movie List"
+      login: "Login"
+      sign_up: "Sign Up"
+      movie_image_alt: "Movie Image"
+      rating_placeholder: "8.5"
+      reviews:
+        one: "Review"
+        other: "Reviews"
+
+    show:
+      title: "Movie Title"
+      director: "Director"
+      rating: "Rating"
+      synopsis: "Synopsis"
+      genres: "Genres"
+      edit_movie: "Edit Movie"
+      delete_movie: "Delete Movie"
+      back_to_list: "Back To Movie List"
+      user_reviews: "User Reviews"
+      user: "User"
+      review: "Review"
+      full_review: "Full Review"
+      no_reviews: "No reviews available."
+      add_review: "Add a Review"
+      submit_review: "Submit Review"
+
+  reviews:
+    show:
+      user: "User"
+      rating: "Rating"
+      review: "Review"
+      edit_review: "Edit Review"
+      delete_review: "Delete Review"
+      confirm_delete_review: "Are you sure you want to delete this review?"
+      back_to_movie_review: "Back To Movie Review"
+      comments: "Comments"
+      user_name: "User Name"
+      comment: "Comment"
+      action: "Action"
+      edit: "Edit"
+      delete: "Delete"
+      confirm_delete_comment: "Are you sure you want to delete this comment?"
+      no_comments: "No comments available."
+      add_comment: "Add a Comment"
+      comment_label: "Comment"
+      submit: "Submit"
+
+    edit:
+      heading: "Edit Review for %{movie_title}"
+      rating_label: "Rating"
+      review_label: "Review"
+      update_review_button: "Update Review"
+
+  comments:
+    show:
+      director: "Director"
+      rating: "Rating"
+      synopsis: "Synopsis"
+      review: "Review"
+      user: "User"
+      review_text: "Review"
+      comments: "Comments"
+      user_name: "User Name"
+      comment: "Comment"
+      actions: "Actions"
+      delete: "Delete"
+      confirm_delete: "Are you sure you want to delete this comment?"
+      no_comments: "No comments available."
+      add_comment: "Add a Comment"
+      comment_label: "Comment"
+      submit_comment: "Submit Comment"
+
+    edit:
+      edit_comment: "Edit Comment"
+      comment_label: "Comment"
+      update_button: "Update"
+      back_to_review: "Back to Review"

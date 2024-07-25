@@ -1,13 +1,12 @@
 <div class="flex justify-between items-center p-4">
-  <h1 class="text-2xl font-bold mb-6">Movie List</h1>
+  <h1 class="text-2xl font-bold mb-6"><%= t('movies.index.title') %></h1>
   <% if !logged_in? %>
     <div class="flex space-x-4">
-      <%= link_to 'Login', login_users_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-      <%= link_to 'Sign Up', new_user_path, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" %>
+      <%= link_to t('movies.index.login'), login_users_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      <%= link_to t('movies.index.sign_up'), new_user_path, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" %>
     </div>
   <% end %>
 </div>
-
 
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
   <% @movies.each do |movie| %>
@@ -17,7 +16,7 @@
         <% if movie.movie_cover.attached? %>
           <%= image_tag url_for(movie.movie_cover), class: 'w-full h-full object-cover' %>
         <% else %>
-          <img src="https://via.placeholder.com/300" alt="Movie Image" class="w-full h-full object-cover">
+          <img src="https://via.placeholder.com/300" alt="<%= t('movies.index.movie_image_alt') %>" class="w-full h-full object-cover">
         <% end %>
       </div>
       <div class="p-4">
@@ -31,12 +30,12 @@
           <svg class="h-5 w-5 text-yellow-500 fill-current mr-1" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path d="M10 1L12.2451 6.47214L18.4902 7.11803L13.7451 11.0279L15.4902 17L10 13.7634L4.5098 17L6.2549 11.0279L1.5098 7.11803L7.7549 6.47214L10 1Z"/>
           </svg>
-          <span class="text-gray-600">8.5</span> <!-- Replace with movie rating -->
+          <span class="text-gray-600"><%= t('movies.index.rating_placeholder') %></span> <!-- Replace with movie rating -->
         </div>
 
         <!-- Number of Reviews -->
         <div class="text-gray-600 mb-4">
-          <span><%= pluralize(movie.reviews.count, 'Review') %></span>
+          <span><%= pluralize(movie.reviews.count, t('movies.index.reviews.one'), t('movies.index.reviews.other')) %></span>
         </div>
       </div>
     </div>
