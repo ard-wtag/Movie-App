@@ -7,8 +7,8 @@ ruby '3.0.2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'dotenv-rails', groups: %i[development test]
-gem 'importmap-rails'
 gem 'image_processing', '~> 1.2'
+gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg'
 gem 'puma', '>= 5.0'
@@ -22,22 +22,22 @@ gem 'tzinfo-data', platforms: %i[mswin mswin64 mingw x64_mingw jruby]
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mswin mswin64 mingw x64_mingw]
-  gem 'rspec-rails', '~> 5.0'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rspec-rails', '~> 5.0'
 end
 
 group :development do
+  gem 'letter_opener'
   gem 'pry', '~> 0.14.2'
   gem 'rubocop'
   gem 'rubocop-capybara'
   gem 'rubocop-rails'
   gem 'web-console'
-  gem 'letter_opener'
 end
 
 group :test do
   gem 'capybara'
-  gem 'selenium-webdriver'
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
 end

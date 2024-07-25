@@ -1,18 +1,18 @@
+# frozen_string_literal: true
+
 class PasswordResetsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     @user = User.find_by(email: params[:email])
-    if @user
-      UserNotificationMailer.with(user: @user).password_reset.deliver_now
-    end
-    redirect_to login_users_path, notice: 'If an account with that email was found, we have sent a link to reset password'
+    UserNotificationMailer.with(user: @user).password_reset.deliver_now if @user
+    redirect_to login_users_path,
+                notice: 'If an account with that email was found, we have sent a link to reset password'
   end
 
   def edit
     @user = User.find_signed!(params[:token], purpose: 'password_reset')
-    rescue ActiveSupport::MessageVerifier::InvalidSignature
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
     redirect_to login_users_path, alert: 'Your token has expired. Please try again'
   end
 
@@ -32,5 +32,4 @@ class PasswordResetsController < ApplicationController
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
   end
-
 end

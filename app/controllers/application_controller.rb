@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_admin
-    @current_admin ||=User.find_by(id: session[:admin_user_id]) if session[:admin_user_id]
+    @current_admin ||= User.find_by(id: session[:admin_user_id]) if session[:admin_user_id]
   end
 
   def logged_in?

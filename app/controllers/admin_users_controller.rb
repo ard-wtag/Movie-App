@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # All the admin features are controlled from here
 class AdminUsersController < ApplicationController
   layout 'admin_dashboard', except: %i[login attempt_login]
