@@ -1,0 +1,21 @@
+<div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+  <h1 class="text-3xl font-bold mb-6 text-center">Edit Review for <%= @review.movie.title %></h1>
+
+  <div class="bg-white p-4 rounded-lg shadow-md mt-6">
+    <%= form_with model: @review, local: true do |form| %>
+      <div class="mb-4">
+        <%= form.label :rating, class: "block text-gray-700" %>
+        <%= form.number_field :rating, in: 1..10, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline", required: true %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :review, class: "block text-gray-700" %>
+        <%= form.text_area :review, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline", required: true %>
+      </div>
+
+      <div class="flex justify-end">
+        <%= form.submit 'Update Review', class: "py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300" %>
+      </div>
+    <% end %>
+  </div>
+</div>

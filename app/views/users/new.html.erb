@@ -1,1 +1,53 @@
-users
+<!-- app/views/users/new.html.erb -->
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+
+    <%= form_with model: @user, local: true, class: "space-y-6" do |form| %>
+      <div>
+        <%= form.label :first_name, class: "block text-gray-700" %>
+        <%= form.text_field :first_name, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= form.label :last_name, class: "block text-gray-700" %>
+        <%= form.text_field :last_name, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= form.label :user_name, class: "block text-gray-700" %>
+        <%= form.text_field :user_name, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= form.label :email, class: "block text-gray-700" %>
+        <%= form.email_field :email, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= form.label :phone_no, class: "block text-gray-700" %>
+        <%= form.telephone_field :phone_no, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= form.label :password, class: "block text-gray-700" %>
+        <%= form.password_field :password, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= form.label :password_confirmation, class: "block text-gray-700" %>
+        <%= form.password_field :password_confirmation, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
+      </div>
+
+      <div>
+        <%= form.submit "Sign Up", class: "w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300" %>
+      </div>
+    <% end %>
+
+    <br/>
+
+    <div>
+      <%= link_to 'Log in', login_users_path, class: "w-full py-2 px-4 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-300" %>
+    </div>
+  </div>
+</div>

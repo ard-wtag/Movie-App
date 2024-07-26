@@ -12,6 +12,8 @@ gem "bootsnap", require: false
 gem 'dotenv-rails', groups: [:development, :test]
 
 
+gem 'faker' # using this gem in the seed file to generate random data
+
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
@@ -69,6 +71,7 @@ end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'pry', '~> 0.14.2'
   gem "web-console"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]

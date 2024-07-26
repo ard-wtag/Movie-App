@@ -26,7 +26,7 @@
       </div>
 
       <div class="flex justify-between">
-        <%= link_to 'Cancel', movies_path, class: 'py-2 px-4 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-300' %>
+        <%= link_to 'Cancel', movie_path(@movie), class: 'py-2 px-4 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-300' %>
         <%= form.submit "Update Movie", class: 'py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300' %>
       </div>
     <% end %>

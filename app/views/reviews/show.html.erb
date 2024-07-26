@@ -1,0 +1,77 @@
+<div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+  <h1 class="text-3xl font-bold mb-6 text-center"><%= @review.movie.title %></h1>
+  <p class="text-xl font-semibold mb-4"><strong>User:</strong> <%= @review.user.first_name %> <%= @review.user.last_name %></p>
+  <p class="text-xl font-semibold mb-4"><strong>Rating:</strong> <%= @review.rating %></p>
+  <p class="text-xl mb-4"><strong>Review:</strong> <%= @review.review %></p>
+
+  <% if current_user!=nil and @review.user_id == current_user.id %>
+    <div class="flex justify-between mb-4">
+      <%= link_to 'Edit Review', edit_review_path(@review), class: 'py-2 px-4 bg-yellow-500 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-yellow-300' %>
+      <%= button_to 'Delete Review', review_path(@review), method: :delete, data: { confirm: 'Are you sure you want to delete this review?' }, class: 'py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
+    </div>      
+  <% end %>  
+
+    <% if current_admin!=nil %>
+    <div class="flex justify-between mt-6">
+      <%= button_to 'Delete Review', review_path(@review),method: :delete, class: 'py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
+    </div>
+    <br/>
+  <% end %>
+
+    <div class="flex justify-between">
+    <%= link_to 'Back To Movie Review', movie_path(@review.movie.id), class: 'py-2 px-4 bg-gray-300 text-gray-800 font-semibold rounded-lg shadow-md hover:bg-gray-400 focus:outline-none focus:ring focus:ring-gray-300' %>
+  </div>
+
+  <hr class="my-6">
+  <h2 class="text-2xl font-bold mb-4 text-center">Comments</h2>
+  <div class="bg-gray-100 p-4 rounded-lg">
+<% if @review.comments.any? %>
+  <table class="min-w-full bg-white">
+    <thead class="bg-gray-800 text-white">
+      <tr>
+        <th class="py-2 px-4">User Name</th>
+        <th class="py-2 px-4">Comment</th>
+        <th class="py-2 px-4">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @review.comments.each do |comment| %>
+        <tr class="bg-gray-100">
+          <td class="border px-4 py-2">
+            <%= link_to "#{comment.user.first_name} #{comment.user.last_name}", user_path(comment.user), class: 'text-blue-500 hover:text-blue-700' %>
+          </td>
+          <td class="border px-4 py-2"><%= comment.comment %></td>
+          <td class="border px-4 py-2">
+            <% if current_user!=nil and comment.user_id == current_user.id %>
+              <%= link_to 'Edit', edit_comment_path(comment), class: 'bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded' %> <br/>
+              <%= button_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure you want to delete this comment?' }, class: 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' %>
+            <% end %>
+
+            <% if current_admin!=nil  %>
+              <%= button_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure you want to delete this comment?' }, class: 'bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="text-center">No comments available.</p>
+<% end %>
+
+  </div>
+
+  <hr class="my-6">
+  <h2 class="text-2xl font-bold mb-4 text-center">Add a Comment</h2>
+  <div class="bg-white p-4 rounded-lg shadow-md mt-6">
+    <%= form_with model: [ @review, Comment.new ], local: true do |form| %>
+      <div class="mb-4">
+        <%= form.label :comment, class: "block text-gray-700" %>
+        <%= form.text_area :comment, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline", required: true %>
+      </div>
+      <div class="flex justify-end">
+        <%= form.submit 'Submit', class: "py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
 
+  before_action :authenticate_user!, only: [:show, :edit, :update, :delete, :destroy,:new,:create,]
 
   def index
     @movies=Movie.sorted_by_title
@@ -27,7 +28,7 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
-      redirect_to movies_path, notice: 'Movie was successfully updated.'
+      redirect_to movie_path(@movie), notice: 'Movie was successfully updated.'
     else
       render :edit
     end
