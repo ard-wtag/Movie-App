@@ -16,9 +16,19 @@ rescue ActiveRecord::PendingMigrationError => error
   puts error.to_s.strip
   exit 1
 end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures').to_s
+
+  config.include FactoryBot::Syntax::Methods 
 
   config.use_transactional_fixtures = true
 

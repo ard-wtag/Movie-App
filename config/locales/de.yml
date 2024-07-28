@@ -1,0 +1,48 @@
+de:
+  activerecord:
+    errors:
+      models:
+        comment:
+          attributes:
+            comment:
+              blank: "darf nicht leer sein"
+        review:
+          attributes:
+            rating:
+              blank: "darf nicht leer sein"
+              inclusion: "muss zwischen 1 und 10 liegen"
+            review:
+              blank: "darf nicht leer sein"
+        follow_list:
+          attributes:
+            follower_id:
+              taken: "wurde bereits vergeben"
+          messages:
+            cannot_follow_self: "kann sich nicht selbst folgen"
+        user:
+          attributes:
+            first_name:
+              blank: "darf nicht leer sein"
+            last_name:
+              blank: "darf nicht leer sein"
+            user_name:
+              blank: "darf nicht leer sein"
+              taken: "wurde bereits vergeben"
+            email:
+              blank: "darf nicht leer sein"
+              taken: "wurde bereits vergeben"
+              invalid: "ist keine gültige E-Mail-Adresse"
+            phone_number:
+              blank: "darf nicht leer sein"
+            password:
+              too_short: "ist zu kurz (mindestens 6 Zeichen)"
+        movie:
+          attributes:
+            title:
+              blank: "darf nicht leer sein"
+            director:
+              blank: "darf nicht leer sein"
+            synopsis:
+              blank: "darf nicht leer sein"
+            release_date:
+              blank: "darf nicht leer sein"

@@ -13,8 +13,6 @@ gem 'bootsnap', require: false
 # dotenv-rails gem
 gem 'dotenv-rails', groups: %i(development test)
 
-gem 'faker' # using this gem in the seed file to generate random data
-
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
 
@@ -60,6 +58,9 @@ gem 'tzinfo-data', platforms: %i(mswin mswin64 mingw x64_mingw jruby)
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i(mri mswin mswin64 mingw x64_mingw)
+  gem 'faker'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
 end
 
 group :development do
@@ -73,6 +74,6 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
 
-  gem 'faker'
+  
   gem 'rspec-rails', '~> 5.0'
 end

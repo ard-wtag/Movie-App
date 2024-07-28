@@ -1,31 +1,48 @@
-# Files in the config/locales directory are used for internationalization and
-# are automatically loaded by Rails. If you want to use locales other than
-# English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more about the API, please read the Rails Internationalization guide
-# at https://guides.rubyonrails.org/i18n.html.
-#
-# Be aware that YAML interprets the following case-insensitive strings as
-# booleans: `true`, `false`, `on`, `off`, `yes`, `no`. Therefore, these strings
-# must be quoted to be interpreted as strings. For example:
-#
-#     en:
-#       "yes": yup
-#       enabled: "ON"
-
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        comment:
+          attributes:
+            comment:
+              blank: "can't be blank"
+        review:
+          attributes:
+            rating:
+              blank: "can't be blank"
+              inclusion: "must be between 1 and 10"
+            review:
+              blank: "can't be blank"
+        follow_list:
+          attributes:
+            follower_id:
+              taken: "has already been taken"
+          messages:
+            cannot_follow_self: "can't follow yourself"
+        user:
+          attributes:
+            first_name:
+              blank: "can't be blank"
+            last_name:
+              blank: "can't be blank"
+            user_name:
+              blank: "can't be blank"
+              taken: "has already been taken"
+            email:
+              blank: "can't be blank"
+              taken: "has already been taken"
+              invalid: "is not a valid email address"
+            phone_number:
+              blank: "can't be blank"
+            password:
+              too_short: "is too short (minimum is 6 characters)"
+        movie:
+          attributes:
+            title:
+              blank: "can't be blank"
+            director:
+              blank: "can't be blank"
+            synopsis:
+              blank: "can't be blank"
+            release_date:
+              blank: "can't be blank"

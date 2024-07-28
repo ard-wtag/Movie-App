@@ -5,111 +5,45 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   context 'validations' do
     it 'is valid with valid attributes' do
-      user = User.new(
-        first_name: 'John',
-        last_name: 'Doe',
-        user_name: 'johndoe',
-        email: 'john.doe@example.com',
-        phone_no: '1234567890',
-        password: 'password',
-        password_confirmation: 'password',
-      )
+      user = build(:user)
       expect(user).to be_valid
     end
 
-    it 'is not valid without a first name' do
-      user = User.new(first_name: nil)
+    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:last_name) }
+    it { should validate_presence_of(:user_name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:phone_number) }
+
+    it 'validates uniqueness of email' do
+      create(:user, email: 'jane.doe@example.com')
+      user = build(:user, email: 'jane.doe@example.com')
       expect(user).to_not be_valid
     end
 
-    it 'is not valid without a last name' do
-      user = User.new(last_name: nil)
-      expect(user).to_not be_valid
-    end
-
-    it 'is not valid without a user name' do
-      user = User.new(user_name: nil)
-      expect(user).to_not be_valid
-    end
-
-    it 'is not valid without an email' do
-      user = User.new(email: nil)
-      expect(user).to_not be_valid
-    end
-
-    it 'is not valid without a phone number' do
-      user = User.new(phone_no: nil)
-      expect(user).to_not be_valid
-    end
-
-    it 'is not valid with a duplicate email' do
-      User.create(
-        first_name: 'Jane',
-        last_name: 'Doe',
-        user_name: 'janedoe',
-        email: 'jane.doe@example.com',
-        phone_no: '0987654321',
-        password: 'password',
-        password_confirmation: 'password',
-      )
-      user = User.new(email: 'jane.doe@example.com')
-      expect(user).to_not be_valid
-    end
-
-    it 'is not valid with a duplicate user name' do
-      User.create(
-        first_name: 'Jane',
-        last_name: 'Doe',
-        user_name: 'janedoe',
-        email: 'jane.doe@example.com',
-        phone_no: '0987654321',
-        password: 'password',
-        password_confirmation: 'password',
-      )
-      user = User.new(user_name: 'janedoe')
+    it 'validates uniqueness of user name' do
+      create(:user, user_name: 'janedoe')
+      user = build(:user, user_name: 'janedoe')
       expect(user).to_not be_valid
     end
 
     it 'is not valid with an invalid email format' do
-      user = User.new(email: 'invalid_email')
+      user = build(:user, email: 'invalid_email')
       expect(user).to_not be_valid
     end
 
     it 'is not valid with a short password' do
-      user = User.new(password: 'short', password_confirmation: 'short')
+      user = build(:user, password: 'short', password_confirmation: 'short')
       expect(user).to_not be_valid
     end
   end
 
   context 'associations' do
-    it 'has many followed friend lists' do
-      association = User.reflect_on_association(:followed_friend_lists)
-      expect(association.macro).to eq :has_many
-    end
-
-    it 'has many followees' do
-      association = User.reflect_on_association(:followees)
-      expect(association.macro).to eq :has_many
-    end
-
-    it 'has many follower friend lists' do
-      association = User.reflect_on_association(:follower_friend_lists)
-      expect(association.macro).to eq :has_many
-    end
-
-    it 'has many followers' do
-      association = User.reflect_on_association(:followers)
-      expect(association.macro).to eq :has_many
-    end
-
-    it 'has many reviews' do
-      association = User.reflect_on_association(:reviews)
-      expect(association.macro).to eq :has_many
-    end
-
-    it 'has many comments' do
-      association = User.reflect_on_association(:comments)
-      expect(association.macro).to eq :has_many
-    end
+    it { should have_many(:followed_friend_lists) }
+    it { should have_many(:followees).through(:followed_friend_lists) }
+    it { should have_many(:follower_friend_lists) }
+    it { should have_many(:followers).through(:follower_friend_lists) }
+    it { should have_many(:reviews) }
+    it { should have_many(:comments) }
   end
 end
