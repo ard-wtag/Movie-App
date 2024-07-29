@@ -19,7 +19,5 @@ class Movie < ApplicationRecord
     def all_reviews_with_comments
         reviews.includes(:comments)
     end
-
-    
     
 end

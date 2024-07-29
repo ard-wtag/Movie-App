@@ -10,13 +10,11 @@ Rails.application.routes.draw do
     end
   end 
 
-
   resources :movies  do 
     member do
       get :delete  
     end
   end 
-
 
   resources :users do 
     member do
@@ -25,6 +23,5 @@ Rails.application.routes.draw do
   end 
 
   get "up" => "rails/health#show", as: :rails_health_check
-
 
 end

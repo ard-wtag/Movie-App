@@ -7,7 +7,6 @@ class CreateAdminUsers < ActiveRecord::Migration[7.1]
       t.string :email
       t.string :phone_no
       t.string :password_digest
-
       t.timestamps
     end
   end

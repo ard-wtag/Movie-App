@@ -1,15 +1,14 @@
 class User < ApplicationRecord
 
-   has_secure_password
+  has_secure_password
 
-
-    # A user follows many users through the FollowList join model
-    has_many :followed_friend_lists, foreign_key: :follower_id, class_name: 'FollowList'
-    has_many :followees, through: :followed_friend_lists, source: :followee
+  # A user follows many users through the FollowList join model
+  has_many :followed_friend_lists, foreign_key: :follower_id, class_name: 'FollowList'
+  has_many :followees, through: :followed_friend_lists, source: :followee
   
-    # A user is followed by many users through the FollowList join model
-    has_many :follower_friend_lists, foreign_key: :followee_id, class_name: 'FollowList'
-    has_many :followers, through: :follower_friend_lists, source: :follower
+  # A user is followed by many users through the FollowList join model
+  has_many :follower_friend_lists, foreign_key: :followee_id, class_name: 'FollowList'
+  has_many :followers, through: :follower_friend_lists, source: :follower
 
     
 

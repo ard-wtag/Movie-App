@@ -10,9 +10,9 @@ class MoviesController < ApplicationController
     @reviews = @movie.reviews.includes(:user)  
 
     if @reviews.any?
-      n = @reviews.length
-      sum = @reviews.sum(&:rating)
-      @average_rating = sum.to_f / n
+      number_of_reviews = @reviews.length
+      summation_of_all_ratings = @reviews.sum(&:rating)
+      @average_rating = summation_of_all_ratings.to_f / number_of_reviews
     else
       @average_rating = 0
     end
