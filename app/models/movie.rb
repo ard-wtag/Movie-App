@@ -20,6 +20,4 @@ class Movie < ApplicationRecord
         reviews.includes(:comments)
     end
 
-    
-    
 end

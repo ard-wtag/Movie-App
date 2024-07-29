@@ -89,7 +89,6 @@ class UsersController < ApplicationController
     self.class.layout nil  # Clear layout after logout
   end
   
-
   private
 
   def set_user

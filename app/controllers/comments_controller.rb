@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
-
   before_action :authenticate_user!
-
 
   def index
   end
@@ -62,7 +60,6 @@ class CommentsController < ApplicationController
     redirect_to reviews_path, alert: 'Comment not found.'
   end
   
-
   private
 
   def comment_params

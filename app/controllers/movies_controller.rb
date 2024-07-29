@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-
   before_action :authenticate_user!, only: [:show, :edit, :update, :delete, :destroy,:new,:create,]
 
   def index
@@ -19,8 +18,6 @@ class MoviesController < ApplicationController
     end
   end
 
-
-
   def edit
     @movie=Movie.find(params[:id])
   end
@@ -33,8 +30,6 @@ class MoviesController < ApplicationController
       render :edit
     end
   end 
-
-
 
   def new
     @movie=Movie.new
@@ -49,8 +44,6 @@ class MoviesController < ApplicationController
     end
   end
 
-
-
   def delete
     @movie=Movie.find(params[:id])
   end
@@ -63,7 +56,6 @@ class MoviesController < ApplicationController
       redirect_to movies_path, alert: 'Failed to delete movie.'
     end
   end
-
 
   private
 

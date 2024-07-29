@@ -11,5 +11,4 @@ class FollowList < ApplicationRecord
       errors.add(:follower_id, "can't follow yourself") if follower_id == followee_id
     end
 
-
 end
