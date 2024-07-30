@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/controllers/reviews_controller_spec.rb
 
 require 'rails_helper'
@@ -12,33 +14,33 @@ RSpec.describe ReviewsController, type: :controller do
   end
 
   describe 'GET #show' do
-  it 'assigns the requested review to @review' do
-    get :show, params: { id: review.id }
-    expect(assigns(:review)).to eq(review)
-  end
+    it 'assigns the requested review to @review' do
+      get :show, params: { id: review.id }
+      expect(assigns(:review)).to eq(review)
+    end
 
-  it 'assigns the associated movie to @movie' do
-    get :show, params: { id: review.id }
-    expect(assigns(:movie)).to eq(movie)
-  end
+    it 'assigns the associated movie to @movie' do
+      get :show, params: { id: review.id }
+      expect(assigns(:movie)).to eq(movie)
+    end
 
-  it 'assigns the associated user to @user' do
-    get :show, params: { id: review.id }
-    expect(assigns(:user)).to eq(user)
-  end
+    it 'assigns the associated user to @user' do
+      get :show, params: { id: review.id }
+      expect(assigns(:user)).to eq(user)
+    end
 
-  it 'renders the show template' do
-    get :show, params: { id: review.id }
-    expect(response).to render_template(:show)
+    it 'renders the show template' do
+      get :show, params: { id: review.id }
+      expect(response).to render_template(:show)
+    end
   end
-end
 
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new review' do
-        expect {
+        expect do
           post :create, params: { movie_id: movie.id, review: FactoryBot.attributes_for(:review, user: user) }
-        }.to change(Review, :count).by(1)
+        end.to change(Review, :count).by(1)
       end
 
       it 'redirects to the movie show page' do
@@ -49,9 +51,9 @@ end
 
     context 'with invalid attributes' do
       it 'does not save the new review' do
-        expect {
+        expect do
           post :create, params: { movie_id: movie.id, review: FactoryBot.attributes_for(:review, rating: nil) }
-        }.to_not change(Review, :count)
+        end.to_not change(Review, :count)
       end
 
       it 're-renders the movie show template' do
@@ -64,9 +66,9 @@ end
   describe 'DELETE #destroy' do
     it 'deletes the review' do
       review
-      expect {
+      expect do
         delete :destroy, params: { id: review.id }
-      }.to change(Review, :count).by(-1)
+      end.to change(Review, :count).by(-1)
     end
 
     it 'redirects to the movie show page' do

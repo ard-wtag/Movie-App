@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This is review controller
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show edit update destroy]

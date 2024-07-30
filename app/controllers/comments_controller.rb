@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # new comment create and update or delete actions are handeled from here
 class CommentsController < ApplicationController
   before_action :authenticate_user!

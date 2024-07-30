@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/controllers/followers_controller_spec.rb
 
 require 'rails_helper'
@@ -13,9 +15,9 @@ RSpec.describe FollowersController, type: :controller do
 
   describe 'POST #follow' do
     it 'follows the user' do
-      expect {
+      expect do
         post :follow, params: { id: other_user.id, origin_user: origin_user.id, origin_view: 'user' }
-      }.to change(FollowList, :count).by(1)
+      end.to change(FollowList, :count).by(1)
     end
 
     it 'redirects to the correct origin view' do
@@ -30,9 +32,9 @@ RSpec.describe FollowersController, type: :controller do
     end
 
     it 'unfollows the user' do
-      expect {
+      expect do
         delete :unfollow, params: { id: other_user.id, origin_user: origin_user.id, origin_view: 'user' }
-      }.to change(FollowList, :count).by(-1)
+      end.to change(FollowList, :count).by(-1)
     end
 
     it 'redirects to the correct origin view' do

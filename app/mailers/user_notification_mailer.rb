@@ -2,17 +2,15 @@ class UserNotificationMailer < ApplicationMailer
   default from: 'no-reply@example.com'
 
   def login_notification(user)
-    @greeting = "Hi"
-    @user=user 
+    @greeting = 'Hi'
+    @user = user
 
     mail(to: @user.email, subject: 'Successfully Logged in')
-
-    
   end
 
   def signin_notification(user)
-    @greeting = "Hi"
-    @user=user 
+    @greeting = 'Hi'
+    @user = user
 
     mail(to: @user.email, subject: 'Successfully Loggedin')
   end
@@ -26,6 +24,5 @@ class UserNotificationMailer < ApplicationMailer
     @user = params[:user]
     @token = @user.signed_id(purpose: 'password_reset', expires_in: 15.minutes)
     mail to: @user.email, subject: 'Password Reset Instructions'
-
   end
 end

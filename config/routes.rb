@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[new create index show]
   end
 
-  resource :password_reset, only: [:new, :create, :edit, :update]
+  resource :password_reset, only: %i[new create edit update]
 
   resources :reviews do
     member do

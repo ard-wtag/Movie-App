@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FollowList < ApplicationRecord
   belongs_to :follower, class_name: 'User' # This sets up a many-to-one relationship where the follower is a User.
   belongs_to :followee, class_name: 'User' # This sets up a many-to-one relationship where the followee is a User.

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Movie cretion,delete/update actions are handeled from here
 class MoviesController < ApplicationController
   before_action :authenticate_user!, only: %i[show edit update delete destroy new create]
@@ -28,7 +26,7 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
-      flash[:notice]= 'Movie was successfully updated.'
+      flash[:notice] = 'Movie was successfully updated.'
       redirect_to movie_path(@movie)
     else
       render :edit
@@ -42,7 +40,7 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(movie_params)
     if @movie.save
-      flash[:notice]= 'Movie was successfully created.'
+      flash[:notice] = 'Movie was successfully created.'
       redirect_to movies_path
     else
       render :new
@@ -55,13 +53,12 @@ class MoviesController < ApplicationController
 
   def destroy
     @movie = Movie.find(params[:id])
-    if @movie.destroy
-      flash[:notice]= 'Movie was deleted successfully'
-      redirect_to movies_path
-    else
-      flash[:notice]= 'Failed to delete movie.'
-      redirect_to movies_path
-    end
+    flash[:notice] = if @movie.destroy
+                       'Movie was deleted successfully'
+                     else
+                       'Failed to delete movie.'
+                     end
+    redirect_to movies_path
   end
 
   private

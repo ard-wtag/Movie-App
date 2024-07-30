@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/controllers/comments_controller_spec.rb
 
 require 'rails_helper'
@@ -37,9 +39,9 @@ RSpec.describe CommentsController, type: :controller do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'creates a new comment' do
-        expect {
+        expect do
           post :create, params: { review_id: review.id, comment: FactoryBot.attributes_for(:comment) }
-        }.to change(Comment, :count).by(1)
+        end.to change(Comment, :count).by(1)
       end
 
       it 'redirects to the review show page' do
@@ -50,9 +52,9 @@ RSpec.describe CommentsController, type: :controller do
 
     context 'with invalid attributes' do
       it 'does not save the new comment' do
-        expect {
+        expect do
           post :create, params: { review_id: review.id, comment: { comment: '' } }
-        }.to_not change(Comment, :count)
+        end.to_not change(Comment, :count)
       end
 
       it 're-renders the show template' do
@@ -93,9 +95,9 @@ RSpec.describe CommentsController, type: :controller do
   describe 'DELETE #destroy' do
     it 'deletes the comment' do
       comment
-      expect {
+      expect do
         delete :destroy, params: { id: comment.id, review_id: review.id }
-      }.to change(Comment, :count).by(-1)
+      end.to change(Comment, :count).by(-1)
     end
 
     it 'redirects to the review show page' do

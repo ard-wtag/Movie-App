@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # Follower list and follow list data is handeled from here
 
 class FollowersController < ApplicationController

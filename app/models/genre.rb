@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Genre < ApplicationRecord
   belongs_to :movie
   validates :genre_type, presence: true

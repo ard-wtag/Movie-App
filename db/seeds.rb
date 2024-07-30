@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'faker'
 
 # Create 20 Users
@@ -17,7 +19,7 @@ end
 20.times do
   Movie.create!(
     title: Faker::Movie.title,
-    release_date: Faker::Date.between(from: 50.years.ago, to: Date.today),
+    release_date: Faker::Date.between(from: 50.years.ago, to: Time.zone.today),
     director: Faker::Name.name,
     synopsis: Faker::Lorem.paragraph(sentence_count: 3)
   )
@@ -57,12 +59,12 @@ end
 20.times do
   follower = users.sample
   followee = users.sample
-  unless follower == followee || FollowList.exists?(follower: follower, followee: followee)
-    FollowList.create!(
-      follower: follower,
-      followee: followee
-    )
-  end
+  next if follower == followee || FollowList.exists?(follower: follower, followee: followee)
+
+  FollowList.create!(
+    follower: follower,
+    followee: followee
+  )
 end
 
-puts "Seed data created successfully!"
+Rails.logger.debug 'Seed data created successfully!'

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This is users controller, user functionalities are handeled from here
 class UsersController < ApplicationController
   layout 'user_dashboard', except: %i[login attempt_login new create]
@@ -39,10 +37,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = 'User was successfully updated.' 
+      flash[:notice] = 'User was successfully updated.'
       redirect_to user_path(@user)
     else
-      flash.now[:alert] = 'Failed to update user.' + @user.errors.full_messages.join(', ')
+      flash.now[:alert] = "Failed to update user.#{@user.errors.full_messages.join(', ')}"
       render :edit
     end
   end
@@ -94,11 +92,9 @@ class UsersController < ApplicationController
   end
 
   def logout
-    
     session[:user_id] = nil
     flash[:notice] = 'Logged out successfully.'
     redirect_to login_users_path
- 
   end
 
   private
