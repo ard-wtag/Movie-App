@@ -22,6 +22,11 @@
       <%= form.text_area :synopsis, rows: 5, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline" %>
     </div>
 
+    <div class="mb-4">
+      <%= form.label :movie_cover, class: 'block text-gray-700' %>
+      <%= form.file_field :movie_cover, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+   </div>
+
     <div>
       <%= form.submit "Add Movie", class: "w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300" %>
     </div>

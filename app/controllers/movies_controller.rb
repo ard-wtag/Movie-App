@@ -1,14 +1,14 @@
+# Movie cretion,delete/update actions are handeled from here
 class MoviesController < ApplicationController
-
-  before_action :authenticate_user!, only: [:show, :edit, :update, :delete, :destroy,:new,:create,]
+  before_action :authenticate_user!, only: %i[show edit update delete destroy new create]
 
   def index
-    @movies=Movie.sorted_by_title
+    @movies = Movie.sorted_by_title
   end
 
   def show
     @movie = Movie.find(params[:id])
-    @reviews = @movie.reviews.includes(:user)  
+    @reviews = @movie.reviews.includes(:user)
 
     if @reviews.any?
       n = @reviews.length
@@ -19,56 +19,51 @@ class MoviesController < ApplicationController
     end
   end
 
-
-
   def edit
-    @movie=Movie.find(params[:id])
+    @movie = Movie.find(params[:id])
   end
 
   def update
     @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
-      redirect_to movie_path(@movie), notice: 'Movie was successfully updated.'
+      flash[:notice] = 'Movie was successfully updated.'
+      redirect_to movie_path(@movie)
     else
       render :edit
     end
-  end 
-
-
+  end
 
   def new
-    @movie=Movie.new
+    @movie = Movie.new
   end
 
   def create
-    @movie=Movie.new(movie_params)
+    @movie = Movie.new(movie_params)
     if @movie.save
-      redirect_to movies_path, notice: 'Movie was successfully created.'
+      flash[:notice] = 'Movie was successfully created.'
+      redirect_to movies_path
     else
       render :new
     end
   end
 
-
-
   def delete
-    @movie=Movie.find(params[:id])
+    @movie = Movie.find(params[:id])
   end
 
   def destroy
     @movie = Movie.find(params[:id])
-    if @movie.destroy
-      redirect_to movies_path, notice: 'Movie was successfully deleted.'
-    else
-      redirect_to movies_path, alert: 'Failed to delete movie.'
-    end
+    flash[:notice] = if @movie.destroy
+                       'Movie was deleted successfully'
+                     else
+                       'Failed to delete movie.'
+                     end
+    redirect_to movies_path
   end
-
 
   private
 
   def movie_params
-    params.require(:movie).permit(:title, :release_date, :director, :synopsis)
+    params.require(:movie).permit(:title, :release_date, :director, :synopsis, :movie_cover)
   end
-
 end

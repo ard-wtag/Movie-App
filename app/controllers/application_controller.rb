@@ -1,16 +1,17 @@
+# This is application controller
 class ApplicationController < ActionController::Base
-  helper_method :current_user, :current_admin, :logged_in?
+  helper_method :current_user, :current_admin, :logged_in?, :flash_class
 
   before_action :set_layout
 
-  private 
+  private
 
   def current_user
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
   def current_admin
-    @current_admin ||= AdminUser.find_by(id: session[:admin_user_id]) if session[:admin_user_id]
+    @current_admin ||= User.find_by(id: session[:admin_user_id]) if session[:admin_user_id]
   end
 
   def logged_in?
@@ -18,17 +19,17 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user!
-    unless logged_in?
-      if params[:controller].start_with?('admin')
-        redirect_to login_admin_users_path, alert: "Please log in as admin."
-      else
-        redirect_to login_users_path, alert: "Please log in."
-      end
+    return if logged_in?
+
+    if params[:controller].start_with?('admin')
+      redirect_to login_admin_users_path, alert: 'Please log in as admin.'
+    else
+      redirect_to login_users_path, alert: 'Please log in.'
     end
   end
 
   def authenticate_admin!
-    redirect_to login_admin_users_path, alert: "Please log in as admin." unless current_admin
+    redirect_to login_admin_users_path, alert: 'Please log in as admin.' unless current_admin
   end
 
   def set_layout
@@ -39,7 +40,15 @@ class ApplicationController < ActionController::Base
         self.class.layout 'user_dashboard'
       end
     else
-      self.class.layout nil  # Clear layout if no user is logged in
+      self.class.layout 'application'
+    end
+  end
+
+  def flash_class(level)
+    case level
+    when 'notice' then 'bg-green-500 text-white'
+    when 'alert' then 'bg-red-500 text-white'
+    else 'bg-yellow-500 text-white'
     end
   end
 end

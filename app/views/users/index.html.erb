@@ -3,7 +3,7 @@
 <table class="min-w-full bg-white border">
   <thead>
     <tr>
-      <th class="px-4 py-2 border">User ID</th>
+      <th class="px-4 py-2 border">Profile Picture</th>
       <th class="px-4 py-2 border">First Name</th>
       <th class="px-4 py-2 border">Last Name</th>
       <th class="px-4 py-2 border">Email</th>
@@ -14,11 +14,20 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td class="px-4 py-2 border"><%= user.id %></td>
+<td class="px-4 py-2 border text-center">
+  <div class="flex justify-center items-center">
+    <% if user.profile_picture.attached? %>
+      <%= image_tag url_for(user.profile_picture), size: "50x50", class: 'rounded-full' %>
+    <% else %>
+      <%= image_tag 'https://st.depositphotos.com/2218212/2938/i/450/depositphotos_29387653-stock-photo-facebook-profile.jpg', size: "50x50", class: 'rounded-full' %>
+    <% end %>
+  </div>
+</td>
+
         <td class="px-4 py-2 border"><%= user.first_name %></td>
         <td class="px-4 py-2 border"><%= user.last_name %></td>
         <td class="px-4 py-2 border"><%= user.email %></td>
-        <td class="px-4 py-2 border"><%= user.phone_no %></td>
+        <td class="px-4 py-2 border"><%= user.phone_number %></td>
         <td class="px-4 py-2 border">
             <div class="flex justify-center space-x-2"> 
                     <%= link_to 'Show Details', user_path(user), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
