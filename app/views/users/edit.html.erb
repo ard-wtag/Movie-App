@@ -1,4 +1,45 @@
-<div>
-  <h1 class="font-bold text-4xl">users#edit</h1>
-  <p>Find me in app/views/users/edit.html.erb</p>
+<div class="bg-white p-8 rounded-lg shadow-md max-w-xl mx-auto">
+  <h1 class="text-3xl font-bold mb-6 text-center">Edit Your Profile</h1>
+
+  <%= form_for @user do |f| %>
+    <div class="mb-4">
+      <%= f.label :first_name, class: 'block text-gray-700' %>
+      <%= f.text_field :first_name, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :last_name, class: 'block text-gray-700' %>
+      <%= f.text_field :last_name, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :user_name, class: 'block text-gray-700' %>
+      <%= f.text_field :user_name, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :email, class: 'block text-gray-700' %>
+      <%= f.email_field :email, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :phone_no, class: 'block text-gray-700' %>
+      <%= f.telephone_field :phone_no, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :password, class: 'block text-gray-700' %>
+      <%= f.password_field :password, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :password_confirmation, class: 'block text-gray-700' %>
+      <%= f.password_field :password_confirmation, class: 'w-full p-2 border border-gray-300 rounded mt-1' %>
+    </div>
+
+    <div class="flex justify-between items-center">
+      <%= f.submit 'Update Profile', class: 'py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300' %>
+      <%= link_to 'Cancel', user_path(@user), class: 'py-2 px-4 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-300' %>
+    </div>
+  <% end %>
 </div>

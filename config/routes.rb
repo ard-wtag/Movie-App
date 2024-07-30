@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'followers/follow'
+  get 'followers/unfollow'
+  get 'followers/followerlist'
+  get 'followers/followeelist'
   
 
   
@@ -19,7 +23,14 @@ Rails.application.routes.draw do
     end 
   end 
 
-
+  resources :followers do 
+    member do
+      get :followerlist
+      get :followeelist 
+      post :follow
+      delete :unfollow  
+    end 
+  end 
 
   resources :movies  do 
     member do

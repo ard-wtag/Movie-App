@@ -3,6 +3,16 @@
   <p class="text-xl font-semibold mb-4"><strong>Email:</strong> <%= @user.email %></p>
   <p class="text-xl font-semibold mb-4"><strong>Phone Number:</strong> <%= @user.phone_no %></p>
 
+  <%if @current_user and @current_user.id!= @user.id %>
+    <%if @current_user.followees.include?(@user)%>
+      <%= button_to 'UnFollow', unfollow_follower_path(@user,origin_user: @user.id, origin_view: 'user'),method: :delete, class: 'py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300' %>
+    <%else%>
+      <%= button_to 'Follow', follow_follower_path(@user,origin_user: @user.id, origin_view: 'user'),method: :post, class: 'py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
+    <%end%>
+  <%elsif @current_user and @current_user.id== @user.id%>
+    <%= link_to 'Edit Profile', edit_user_path(@user), class: 'py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300'%>
+  <%end%>
+
   <div class="flex justify-between items-center my-6 space-x-6">
     <div class="text-center mx-4">
       <span class="block text-3xl font-bold"><%= @reviews.count %></span>
@@ -10,11 +20,11 @@
     </div>
     <div class="text-center mx-4">
       <span class="block text-3xl font-bold"><%= @followers_count %></span>
-      <span class="text-xl"><%= link_to 'Followers', '#' %></span>
+      <span class="text-xl"><%= link_to 'Followers', followerlist_follower_path(@user) %></span>
     </div>
     <div class="text-center mx-4">
       <span class="block text-3xl font-bold"><%= @followees_count %></span>
-      <span class="text-xl"><%= link_to 'Following', '#' %></span>
+      <span class="text-xl"><%= link_to 'Following', followeelist_follower_path(@user) %></span>
     </div>
   </div>
 
