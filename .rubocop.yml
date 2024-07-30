@@ -6,3 +6,4 @@ AllCops:
   SuggestExtensions: false
 Metrics/BlockLength:
   Max: 200
+  
