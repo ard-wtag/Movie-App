@@ -29,7 +29,7 @@ class AdminUsersController < ApplicationController
   def attempt_login
 
     if params[:email].present? && params[:password].present?
-      found_user = AdminUser.find_by(email: params[:email])
+      found_user = User.find_by(email: params[:email])
       if found_user && found_user.authenticate(params[:password])
         session[:admin_user_id] = found_user.id
         flash[:notice] = "You are now logged in."

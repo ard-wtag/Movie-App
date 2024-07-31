@@ -7,16 +7,11 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
-    @reviews = @movie.reviews.includes(:user)  
-
-    if @reviews.any?
-      number_of_reviews = @reviews.length
-      summation_of_all_ratings = @reviews.sum(&:rating)
-      @average_rating = summation_of_all_ratings.to_f / number_of_reviews
-    else
-      @average_rating = 0
-    end
+    @reviews = @movie.reviews.includes(:user)
+  
+    @average_rating = @reviews.average(:rating).to_f || 0
   end
+  
 
 
 
