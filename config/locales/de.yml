@@ -1,0 +1,152 @@
+# config/locales/de.yml
+de:
+  layouts:
+    admin_dashboard:
+      title: "Admin Dashboard"
+      admin_panel: "Admin-Bereich"
+      user_list: "Benutzerliste"
+      movie_list: "Filmliste"
+      add_movie: "Film hinzufügen"
+      log_out: "Abmelden"
+    user_dashboard:
+      title: "Benutzer-Dashboard"
+      user_panel: "Benutzer-Bereich"
+      user_profile: "Benutzerprofil"
+      movie_list: "Filmliste"
+      log_out: "Abmelden"
+
+  users:
+    show:
+      title: "Benutzerprofil"
+      email: "E-Mail"
+      phone_number: "Telefonnummer"
+      unfollow: "Entfolgen"
+      follow: "Folgen"
+      edit_profile: "Profil bearbeiten"
+      reviews_count: "Anzahl der Bewertungen"
+      followers: "Follower"
+      following: "Folgt"
+      user_reviews: "Nutzerbewertungen"
+      movie_name: "Filmname"
+      review: "Bewertung"
+      rating: "Bewertung"
+      no_reviews: "Noch keine Bewertungen."
+
+    new:
+      title: "Anmelden"
+      profile_picture: "Profilbild"
+      first_name: "Vorname"
+      last_name: "Nachname"
+      user_name: "Benutzername"
+      email: "E-Mail"
+      phone_number: "Telefonnummer"
+      password: "Passwort"
+      password_confirmation: "Passwort bestätigen"
+      submit: "Anmelden"
+      login: "Einloggen"
+
+    edit:
+      title: "Profil Bearbeiten"
+      profile_picture: "Profilbild"
+      first_name: "Vorname"
+      last_name: "Nachname"
+      user_name: "Benutzername"
+      email: "E-Mail"
+      phone_number: "Telefonnummer"
+      password: "Passwort"
+      password_confirmation: "Passwort Bestätigung"
+      submit: "Profil Aktualisieren"
+      cancel: "Abbrechen"
+
+    login:
+      title: "Benutzer Anmeldung"
+      email: "E-Mail"
+      password: "Passwort"
+      submit: "Einloggen"
+      forgot_password: "Passwort vergessen?"
+      sign_up: "Anmelden"
+
+    delete:
+      confirm_title: "Benutzerlöschung Bestätigen"
+      confirm_message: "Sind Sie sicher, dass Sie diesen Benutzer löschen möchten?"
+      cancel: "Abbrechen"
+      delete: "Löschen"
+
+  movies:
+    index:
+      title: "Filmliste"
+      login: "Einloggen"
+      sign_up: "Anmelden"
+      movie_image_alt: "Filmbild"
+      rating_placeholder: "8.5"
+      reviews:
+        one: "Rezension"
+        other: "Rezensionen"
+    show:
+      title: "Filmtitel"
+      director: "Regisseur"
+      rating: "Bewertung"
+      synopsis: "Zusammenfassung"
+      genres: "Genres"
+      edit_movie: "Film bearbeiten"
+      delete_movie: "Film löschen"
+      back_to_list: "Zurück zur Filmliste"
+      user_reviews: "Nutzerbewertungen"
+      user: "Benutzer"
+      review: "Bewertung"
+      full_review: "Vollständige Bewertung"
+      no_reviews: "Keine Bewertungen verfügbar."
+      add_review: "Eine Bewertung hinzufügen"
+      submit_review: "Bewertung abschicken"
+
+  reviews:
+    show:
+      user: "Benutzer"
+      rating: "Bewertung"
+      review: "Rezension"
+      edit_review: "Rezension bearbeiten"
+      delete_review: "Rezension löschen"
+      confirm_delete_review: "Sind Sie sicher, dass Sie diese Rezension löschen möchten?"
+      back_to_movie_review: "Zurück zur Filmrezension"
+      comments: "Kommentare"
+      user_name: "Benutzername"
+      comment: "Kommentar"
+      action: "Aktion"
+      edit: "Bearbeiten"
+      delete: "Löschen"
+      confirm_delete_comment: "Sind Sie sicher, dass Sie diesen Kommentar löschen möchten?"
+      no_comments: "Keine Kommentare verfügbar."
+      add_comment: "Einen Kommentar hinzufügen"
+      comment_label: "Kommentar"
+      submit: "Absenden"
+
+    edit:
+      heading: "Rezension für %{movie_title} bearbeiten"
+      rating_label: "Bewertung"
+      review_label: "Rezension"
+      update_review_button: "Rezension aktualisieren"
+
+  comments:
+    show:
+      director: "Regisseur"
+      rating: "Bewertung"
+      synopsis: "Zusammenfassung"
+      review: "Rezension"
+      user: "Benutzer"
+      review_text: "Rezension"
+      comments: "Kommentare"
+      user_name: "Benutzername"
+      comment: "Kommentar"
+      actions: "Aktionen"
+      delete: "Löschen"
+      confirm_delete: "Möchten Sie diesen Kommentar wirklich löschen?"
+      no_comments: "Keine Kommentare verfügbar."
+      add_comment: "Einen Kommentar hinzufügen"
+      comment_label: "Kommentar"
+      submit_comment: "Kommentar absenden"
+
+    edit:
+      edit_comment: "Kommentar bearbeiten"
+      comment_label: "Kommentar"
+      update_button: "Aktualisieren"
+      back_to_review: "Zurück zur Rezension"

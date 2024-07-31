@@ -1,14 +1,15 @@
+<!-- app/views/comments/edit.html.erb -->
 <div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
-  <h2 class="text-2xl font-bold mb-4 text-center">Edit Comment</h2>
+  <h2 class="text-2xl font-bold mb-4 text-center"><%= t('comments.edit.edit_comment') %></h2>
   <%= form_with(model: @comment, url: comment_path(@comment), method: :patch, local: true) do |form| %>
     <div class="mb-4">
-      <%= form.label :comment, class: "block text-gray-700" %>
+      <%= form.label :comment, t('comments.edit.comment_label'), class: "block text-gray-700" %>
       <%= form.text_area :comment, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline", required: true %>
     </div>
     <div class="flex justify-end">
-      <%= form.submit 'Update', class: "py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300" %>
+      <%= form.submit t('comments.edit.update_button'), class: "py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300" %>
     </div>
   <% end %>
 
-  <%= link_to 'Back to Review', review_path(@review), class: 'block mt-4 text-center text-blue-500 hover:text-blue-700' %>
+  <%= link_to t('comments.edit.back_to_review'), review_path(@review), class: 'block mt-4 text-center text-blue-500 hover:text-blue-700' %>
 </div>

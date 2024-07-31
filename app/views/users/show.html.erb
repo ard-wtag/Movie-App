@@ -1,59 +1,59 @@
 <div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
   <h1 class="text-3xl font-bold mb-6 text-center"><%= @user.full_name %></h1>
 
-    <div class="flex justify-center mb-6">
-      <% if @user.profile_picture.attached? %>
-        <%= image_tag url_for(@user.profile_picture), class: 'w-32 h-32 rounded-full object-cover' %>
-      <% else %>
-        <%= image_tag 'https://st.depositphotos.com/2218212/2938/i/450/depositphotos_29387653-stock-photo-facebook-profile.jpg', class: 'w-32 h-32 rounded-full object-cover' %>
-      <% end %>
-    </div>
+  <div class="flex justify-center mb-6">
+    <% if @user.profile_picture.attached? %>
+      <%= image_tag url_for(@user.profile_picture), class: 'w-32 h-32 rounded-full object-cover' %>
+    <% else %>
+      <%= image_tag 'https://st.depositphotos.com/2218212/2938/i/450/depositphotos_29387653-stock-photo-facebook-profile.jpg', class: 'w-32 h-32 rounded-full object-cover' %>
+    <% end %>
+  </div>
 
-  <p class="text-xl font-semibold mb-4"><strong>Email:</strong> <%= @user.email %></p>
-  <p class="text-xl font-semibold mb-4"><strong>Phone Number:</strong> <%= @user.phone_number %></p>
+  <p class="text-xl font-semibold mb-4"><strong><%= t('users.show.email') %>:</strong> <%= @user.email %></p>
+  <p class="text-xl font-semibold mb-4"><strong><%= t('users.show.phone_number') %>:</strong> <%= @user.phone_number %></p>
 
-  <%if @current_user and @current_user.id!= @user.id %>
-    <%if @current_user.followees.include?(@user)%>
-      <%= button_to 'UnFollow', unfollow_follower_path(@user,origin_user: @user.id, origin_view: 'user'),method: :delete, class: 'py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300' %>
-    <%else%>
-      <%= button_to 'Follow', follow_follower_path(@user,origin_user: @user.id, origin_view: 'user'),method: :post, class: 'py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
-    <%end%>
-  <%elsif @current_user and @current_user.id== @user.id%>
-    <%= link_to 'Edit Profile', edit_user_path(@user), class: 'py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300'%>
-  <%end%>
+  <% if @current_user && @current_user.id != @user.id %>
+    <% if @current_user.followees.include?(@user) %>
+      <%= button_to t('users.show.unfollow'), unfollow_follower_path(@user, origin_user: @user.id, origin_view: 'user'), method: :delete, class: 'py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300' %>
+    <% else %>
+      <%= button_to t('users.show.follow'), follow_follower_path(@user, origin_user: @user.id, origin_view: 'user'), method: :post, class: 'py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
+    <% end %>
+  <% elsif @current_user && @current_user.id == @user.id %>
+    <%= link_to t('users.show.edit_profile'), edit_user_path(@user), class: 'py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
+  <% end %>
 
   <div class="flex justify-between items-center my-6 space-x-6">
     <div class="text-center mx-4">
       <span class="block text-3xl font-bold"><%= @reviews.count %></span>
-      <span class="text-xl">No of Reviews</span>
+      <span class="text-xl"><%= t('users.show.reviews_count') %></span>
     </div>
     <div class="text-center mx-4">
       <span class="block text-3xl font-bold"><%= @followers_count %></span>
-      <span class="text-xl"><%= link_to 'Followers', followerlist_follower_path(@user) %></span>
+      <span class="text-xl"><%= link_to t('users.show.followers'), followerlist_follower_path(@user) %></span>
     </div>
     <div class="text-center mx-4">
       <span class="block text-3xl font-bold"><%= @followees_count %></span>
-      <span class="text-xl"><%= link_to 'Following', followeelist_follower_path(@user) %></span>
+      <span class="text-xl"><%= link_to t('users.show.following'), followeelist_follower_path(@user) %></span>
     </div>
   </div>
 
   <hr class="my-6">
-  <h2 class="text-2xl font-bold mb-4 text-center">User Reviews</h2>
+  <h2 class="text-2xl font-bold mb-4 text-center"><%= t('users.show.user_reviews') %></h2>
   <div class="bg-gray-100 p-4 rounded-lg">
     <% if @reviews.any? %>
       <table class="min-w-full bg-white">
         <thead class="bg-gray-800 text-white">
           <tr>
-            <th class="py-2 px-4">Movie Name</th>
-            <th class="py-2 px-4">Review</th>
-            <th class="py-2 px-4">Rating</th>
+            <th class="py-2 px-4"><%= t('users.show.movie_name') %></th>
+            <th class="py-2 px-4"><%= t('users.show.review') %></th>
+            <th class="py-2 px-4"><%= t('users.show.rating') %></th>
           </tr>
         </thead>
         <tbody>
           <% @reviews.each do |review| %>
             <tr class="bg-gray-100">
               <td class="border px-4 py-2">
-               <%= link_to "#{review.movie.title}", movie_path(review.movie), class: 'text-blue-500 hover:text-blue-700' %>
+                <%= link_to review.movie.title, movie_path(review.movie), class: 'text-blue-500 hover:text-blue-700' %>
               </td>
               <td class="border px-4 py-2"><%= review.review %></td>
               <td class="border px-4 py-2"><%= review.rating %></td>
@@ -62,7 +62,7 @@
         </tbody>
       </table>
     <% else %>
-      <p class="text-center">No reviews yet.</p>
+      <p class="text-center"><%= t('users.show.no_reviews') %></p>
     <% end %>
   </div>
 </div>

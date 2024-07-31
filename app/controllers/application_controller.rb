@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_admin, :logged_in?, :flash_class
 
   before_action :set_layout
+  around_action :switch_locale
 
   private
 
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_admin
-    @current_admin ||=User.find_by(id: session[:admin_user_id]) if session[:admin_user_id]
+    @current_admin ||= User.find_by(id: session[:admin_user_id]) if session[:admin_user_id]
   end
 
   def logged_in?
@@ -44,6 +45,18 @@ class ApplicationController < ActionController::Base
     else
       self.class.layout 'application'
     end
+  end
+
+  def switch_locale(&action)
+    logger.debug "* Accept-Language: #{request.env['HTTP_ACCEPT_LANGUAGE']}"
+    locale = extract_locale_from_accept_language_header
+    logger.debug "* Locale set to '#{locale}'"
+    I18n.with_locale(locale, &action)
+  end
+
+  def extract_locale_from_accept_language_header
+    locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+    I18n.available_locales.map(&:to_s).include?(locale) ? locale : I18n.default_locale
   end
 
   def flash_class(level)
