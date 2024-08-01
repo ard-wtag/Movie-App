@@ -5,12 +5,17 @@
     <%= form_with model: @review, local: true do |form| %>
       <div class="mb-4">
         <%= form.label :rating, t('reviews.edit.rating_label'), class: "block text-gray-700" %>
-        <%= form.number_field :rating, in: 1..10, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline", required: true %>
+        <div class="flex items-center space-x-1">
+          <% (1..10).each do |i| %>
+            <%= form.radio_button :rating, i, id: "rating_#{i}", value: i, class: 'hidden' %>
+            <label for="rating_<%= i %>" class="star cursor-pointer text-gray-300 hover:text-yellow-400 text-3xl">&#9733;</label>
+          <% end %>
+        </div>
       </div>
 
       <div class="mb-4">
         <%= form.label :review, t('reviews.edit.review_label'), class: "block text-gray-700" %>
-        <%= form.text_area :review, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline", required: true %>
+        <%= form.text_area :review, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring focus:ring-blue-300", required: true %>
       </div>
 
       <div class="flex justify-end">

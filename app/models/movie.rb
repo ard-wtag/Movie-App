@@ -18,7 +18,6 @@ class Movie < ApplicationRecord
     Genre.for_movie(self)
   end
 
-  def all_reviews_with_comments
-    reviews.includes(:comments)
-  end
+
+
 end

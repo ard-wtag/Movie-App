@@ -17,7 +17,7 @@
   <div class="flex flex-wrap gap-2 mb-4">
     <% @movie.genres.each do |genre| %>
       <button class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">
-        <%= genre.genre_type %>
+        <%= (genre.genre_type) %>
       </button> 
     <% end %>
   </div> 
@@ -27,8 +27,7 @@
   <% if current_admin != nil %>
     <div class="flex justify-between mt-6">
       <%= link_to t('movies.show.edit_movie'), edit_movie_path(@movie), class: 'py-2 px-4 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
-      <%= link_to t('movies.show.delete_movie'), delete_movie_path(@movie), class: 'py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>
-    </div>
+      <%= button_to  'Delete', movie_path(@movie), method: :delete, data: { confirm: 'Are you sure?' }, class: 'py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300' %>    </div>
   <% end %>
 
   <br/>
@@ -49,7 +48,7 @@
             <th class="py-2 px-4"><%= t('movies.show.user') %></th>
             <th class="py-2 px-4"><%= t('movies.show.review') %></th>
             <th class="py-2 px-4"><%= t('movies.show.rating') %></th>
-            <th class="py-2 px-4"><%= t('movies.show.full_review') %></th>
+            <th class="py-2 px-4"><%= t('movies.show.comments') %></th>
           </tr>
         </thead>
         <tbody>
@@ -66,7 +65,7 @@
               <td class="border px-4 py-2"><%= truncate(review.review, length: 100) %></td>
               <td class="border px-4 py-2"><%= review.rating %></td>
               <td class="border px-4 py-2">
-                <%= link_to t('movies.show.full_review'), review_path(review), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+                <%= link_to t('movies.show.comments'), review_path(review), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
               </td>
             </tr>
           <% end %>
@@ -81,17 +80,24 @@
     <h2 class="text-xl font-bold mb-4"><%= t('movies.show.add_review') %></h2>
     <%= form_with model: [ @movie, Review.new ], local: true do |form| %>
       <div class="mb-4">
-        <%= form.label :rating, class: "block text-gray-700" %>
-        <%= form.number_field :rating, in: 1..10, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline", required: true %>
+       <%= form.label :rating, class: "block text-gray-700" %>
+        <div class="flex items-center space-x-1">
+         <% (1..10).each do |i| %>
+            <%= form.radio_button :rating, i, id: "rating_#{i}", class: 'hidden' %>
+            <label for="rating_<%= i %>" class="star cursor-pointer text-gray-300 hover:text-yellow-400 text-3xl">&#9733;</label>
+          <% end %>
+        </div>
       </div>
       <div class="mb-4">
         <%= form.label :review, class: "block text-gray-700" %>
-        <%= form.text_area :review, rows: 4, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:shadow-outline", required: true %>
+        <%= form.text_area :review, rows: 4, class: "mt-1 p-2 w-full border rounded-lg focus:outline-none focus:ring focus:ring-blue-300", required: true %>
       </div>
       <div>
         <%= form.submit t('movies.show.submit_review'), class: 'py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300' %>
       </div>
     <% end %>
   </div>
+
+
 
 </div>

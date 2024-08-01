@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+ /* Hide radio buttons */
+.star-input:checked ~ .star {
+    color: #fbbf24; /* Tailwind yellow-400 */
+  }
+  
+  /* Radio button styling */
+  input[type="radio"]:checked ~ .star {
+    color: #fbbf24; /* Tailwind yellow-400 */
+  }
+  
+  input[type="radio"]:checked ~ .star ~ .star {
+    color: #e5e7eb; /* Tailwind gray-200 */
+  }
+  
